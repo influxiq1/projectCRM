@@ -7,7 +7,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 
 const appRoutes: Routes = [
-  { path: 'about', component: AboutusComponent,data: {
+  { path: '', component: AboutusComponent,data: {
       meta: {
           title: 'About US',
           description: 'Have you seen my rubber duckie?'
