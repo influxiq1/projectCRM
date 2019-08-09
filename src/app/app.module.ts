@@ -9,16 +9,21 @@ import { MetaModule } from '@ngx-meta/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import { LoginComponent } from './login/login.component';
+import{FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { ForgotpassComponent } from './forgotpass/forgotpass.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutusComponent,
     ContactusComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotpassComponent
   ],
   imports: [
     DemoMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,MetaModule.forRoot(), BrowserAnimationsModule
   ],

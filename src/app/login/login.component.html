@@ -1,3 +1,31 @@
-<p>
-  login works!
-</p>
+<h1 style="text-align: center; padding-top: 10%;color:rgb(82, 1, 7)">Welcome To ProjectCRM</h1>
+<div style="padding-left: 40%;">
+<div class="login" style="text-align: center;border: 1px solid black; width: 260px;height:360px; padding: 1px;margin: 0px; background: rgba(224, 214, 214, 0.466)">
+<h2 style="color: rgb(2, 59, 2)">Sign in</h2>
+<form [formGroup]="loginform" (ngSubmit)="SubmitData()">
+<div>
+<mat-form-field appearance="outline">
+<mat-label>User Name</mat-label>
+<input matInput placeholder="User Name" formControlName="email" (blur)="inputBlur('email')">
+
+<!-- <mat-error *ngIf="validate.email.errors && validate.email.errors.required">User Name Can't Be Blank</mat-error> -->
+<mat-error *ngFor="let validation of account_validation_messages.email">
+    <mat-error class="error-message" *ngIf="loginform.get('email').hasError(validation.type) && (loginform.get('email').dirty || loginform.get('email').touched)">{{validation.message}}</mat-error>
+  </mat-error>
+</mat-form-field>
+
+</div>
+<div>
+<mat-form-field appearance="outline">
+<mat-label>Password</mat-label>
+<input matInput placeholder="password" type="password" formControlName="password" (blur)="inputBlur('password')">
+<mat-error *ngIf="validate.password.errors && validate.password.errors.required">Password Can't Be Blank</mat-error>
+</mat-form-field>
+</div>
+<div>
+  <button mat-raised-button style="background: darkgrey">Sign in</button>
+</div>
+</form>
+<a routerLink = "../forgotpass" style="float:right; margin:0px; padding-top: 15%">Forgot Password</a>
+</div>
+</div>
