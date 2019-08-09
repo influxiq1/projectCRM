@@ -9,6 +9,7 @@ import { MetaModule } from '@ngx-meta/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import { LoginComponent } from './login/login.component';
+import { SingupComponent } from './singup/singup.component';
 
 
 @NgModule({
@@ -16,11 +17,8 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     AboutusComponent,
     ContactusComponent,
-<<<<<<< HEAD
-    
-=======
-    LoginComponent
->>>>>>> 96e6d58a3f1e38b5d5a109763d62c180e85f2a7d
+    LoginComponent,
+    SingupComponent
   ],
   imports: [
     DemoMaterialModule,

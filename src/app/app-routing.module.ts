@@ -6,6 +6,7 @@ import { MetaGuard } from '@ngx-meta/core';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { LoginComponent } from './login/login.component';
+import { SingupComponent } from './singup/singup.component';
 
 const appRoutes: Routes = [
   { path: '', component: AboutusComponent,data: {
@@ -26,7 +27,13 @@ const appRoutes: Routes = [
         title: 'Login',
         description: 'Have you seen my rubber duckie?'
       }
-    }}
+    }},
+    {path: 'signup', component:SingupComponent, data: 
+    {meta:{
+      title: 'Sign Up',
+      description: 'Would you like to sign up?'
+    }
+  }}
 ];
 
 @NgModule({
