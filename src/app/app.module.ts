@@ -8,6 +8,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { MetaModule } from '@ngx-meta/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -15,7 +16,11 @@ import { DemoMaterialModule } from './material-module';
     AppComponent,
     AboutusComponent,
     ContactusComponent,
+<<<<<<< HEAD
     
+=======
+    LoginComponent
+>>>>>>> 96e6d58a3f1e38b5d5a109763d62c180e85f2a7d
   ],
   imports: [
     DemoMaterialModule,

@@ -5,6 +5,7 @@ import { MetaGuard } from '@ngx-meta/core';
 
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   { path: '', component: AboutusComponent,data: {
@@ -19,7 +20,13 @@ const appRoutes: Routes = [
               title: 'Contact Us',
               description: 'Have you seen my rubber duckie?'
           }
-      }}
+      }},
+      {path: 'login', component:LoginComponent, data: 
+      {meta:{
+        title: 'Login',
+        description: 'Have you seen my rubber duckie?'
+      }
+    }}
 ];
 
 @NgModule({
