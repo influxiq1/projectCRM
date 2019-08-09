@@ -9,11 +9,13 @@ import { MetaModule } from '@ngx-meta/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     AboutusComponent,
-    ContactusComponent
+    ContactusComponent,
+    
   ],
   imports: [
     DemoMaterialModule,
