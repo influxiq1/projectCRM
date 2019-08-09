@@ -11,6 +11,11 @@ import { DemoMaterialModule } from './material-module';
 import { LoginComponent } from './login/login.component';
 import{FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { ForgotpassComponent } from './forgotpass/forgotpass.component'
+import { SingupComponent } from './singup/singup.component';
+import { UsermanagementComponent } from './usermanagement/usermanagement.component';
+import { ProjectmanagementComponent } from './projectmanagement/projectmanagement.component';
+import { RolemanagementComponent } from './rolemanagement/rolemanagement.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +23,11 @@ import { ForgotpassComponent } from './forgotpass/forgotpass.component'
     AboutusComponent,
     ContactusComponent,
     LoginComponent,
-    ForgotpassComponent
+    ForgotpassComponent,
+    SingupComponent,
+    UsermanagementComponent,
+    ProjectmanagementComponent,
+    RolemanagementComponent
   ],
   imports: [
     DemoMaterialModule,

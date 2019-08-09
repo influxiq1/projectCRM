@@ -7,7 +7,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotpassComponent } from './forgotpass/forgotpass.component';
-
+import { SingupComponent } from './singup/singup.component';
 const appRoutes: Routes = [
   { path: '', component: AboutusComponent,data: {
       meta: {
@@ -33,7 +33,14 @@ const appRoutes: Routes = [
         title: 'Forgot Password',
         description: 'Have you seen my rubber duckie?'
       }
-    }}
+    }},
+
+    {path: 'signup', component:SingupComponent, data: 
+    {meta:{
+      title: 'Sign Up',
+      description: 'Would you like to sign up?'
+    }
+  }}
 ];
 
 @NgModule({
