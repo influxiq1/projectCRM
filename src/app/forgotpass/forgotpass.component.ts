@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{FormBuilder,FormGroup,Validators,FormControl} from '@angular/forms';
+import{HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-forgotpass',
@@ -8,6 +9,7 @@ import{FormBuilder,FormGroup,Validators,FormControl} from '@angular/forms';
 })
 export class ForgotpassComponent implements OnInit {
 
+  message: any = '';
   account_validation_messages = {
     'email': [
       { type: 'required', message: 'Email is required' },
@@ -15,7 +17,7 @@ export class ForgotpassComponent implements OnInit {
     ]};
 
 forgotform:FormGroup;
-  constructor(private build:FormBuilder) {
+  constructor(private build:FormBuilder, private http:HttpClient) {
     this.forgotform = this.build.group({
       email:[null,Validators.compose([Validators.required, Validators.pattern(/^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/)])]
     });
@@ -29,8 +31,26 @@ forgotform:FormGroup;
   }
 
   SubmitData(){
-      this.forgotform.controls['email'].markAsTouched();
+    let x:any;
+    for(x in this.forgotform.controls){
+      this.forgotform.controls[x].markAsTouched();
       console.log(this.forgotform.value);
+    }
+    let link:any = 'http://166.62.39.137:5050/forgetpassword';
+    let data:any = this.forgotform.value;
+    if(this.forgotform.valid){
+      this.http.post(link,data).subscribe(response=>{
+        console.log('res.......'+response);
+        let result: any;
+         result = response;
+        if(result.status == 'success'){
+        this.forgotform.reset();
+        }
+        console.log(result.status);
+        this.message = result.status;
+        
+      })
+    }
   }
 
   inputBlur(val: any) {

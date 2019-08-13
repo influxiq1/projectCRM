@@ -15,7 +15,7 @@ import { SingupComponent } from './singup/singup.component';
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
 import { ProjectmanagementComponent } from './projectmanagement/projectmanagement.component';
 import { RolemanagementComponent } from './rolemanagement/rolemanagement.component';
-
+import{HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import { RolemanagementComponent } from './rolemanagement/rolemanagement.compone
     FormsModule,
     ReactiveFormsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,MetaModule.forRoot(), BrowserAnimationsModule
+    AppRoutingModule,MetaModule.forRoot(), BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

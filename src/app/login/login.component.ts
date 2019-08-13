@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{FormGroup,FormBuilder,Validators,FormControl} from '@angular/forms';
-import { validateConfig } from '@angular/router/src/config';
+import{HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { validateConfig } from '@angular/router/src/config';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+messages:any = '';
   account_validation_messages = {
     'email': [
       { type: 'required', message: 'Email is required' },
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     ]}
    
 loginform:FormGroup;
-constructor(public build:FormBuilder){
+constructor(public build:FormBuilder, private http:HttpClient){
   this.loginform = this.build.group({
     email:['', Validators.compose([Validators.required, Validators.pattern(/^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/)])],
     password:['',Validators.required]
@@ -30,18 +31,32 @@ constructor(public build:FormBuilder){
   get validate(){
     return this.loginform.controls;
   }
-
   SubmitData(){
     let x: any;
     for( let x in this.loginform.controls){
       this.loginform.controls[x].markAsTouched();
-      // console.log(this.loginform.controls[x].value);
     }
     console.log(this.loginform.value);
+    if(this.loginform.valid) {
+      let data: any = {};
+      data = this.loginform.value;
+      let link = 'http://166.62.39.137:5050/login';
+      this.http.post(link, data).subscribe(response=>{
+        let result :any = {};
+        result = response;
+        if(result.status == 'success'){
+        this.loginform.reset();
+        }
+        this.messages = result.msg;
+        console.log(this.messages);
+      })
+    }
+   
 
   }
 
   inputBlur(val: any) {
     this.loginform.controls[val].markAsUntouched();
   }
+
 }
