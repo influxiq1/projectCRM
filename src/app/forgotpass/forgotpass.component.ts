@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import{FormBuilder,FormGroup,Validators,FormControl} from '@angular/forms';
 import{HttpClient} from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-forgotpass',
   templateUrl: './forgotpass.component.html',
   styleUrls: ['./forgotpass.component.css']
 })
-export class ForgotpassComponent implements OnInit {
+export class ForgotpassComponent implements OnInit, OnDestroy {
+  
+  public forgetPasswordSubscribe:Subscription;
 
   message: any = '';
   account_validation_messages = {
@@ -39,7 +42,7 @@ forgotform:FormGroup;
     let link:any = 'http://166.62.39.137:5050/forgetpassword';
     let data:any = this.forgotform.value;
     if(this.forgotform.valid){
-      this.http.post(link,data).subscribe(response=>{
+     this.forgetPasswordSubscribe = this.http.post(link,data).subscribe(response=>{
         console.log('res.......'+response);
         let result: any;
          result = response;
@@ -55,6 +58,9 @@ forgotform:FormGroup;
 
   inputBlur(val: any) {
     this.forgotform.controls[val].markAsUntouched();
+  }
+  ngOnDestroy() {
+    this.forgetPasswordSubscribe.unsubscribe();
   }
 
 }
