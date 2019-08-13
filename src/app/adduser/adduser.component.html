@@ -28,13 +28,21 @@
         <input matInput placeholder="select a role" aria-label="role" [matAutocomplete]="auto" formControlName="roleselect">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of allRoles" [value]="option.rolename">
-            <img aria-hidden>
+            
             <span>{{option.rolename}}</span> 
  
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     <br>
+
+    <mat-label>Designation:</mat-label><br>
+    <mat-radio-group aria-label="Select an option" formControlName="designation">
+      <mat-radio-button value="1" checked>Senior</mat-radio-button>
+      <mat-radio-button value="2">Junior</mat-radio-button>
+    </mat-radio-group><br>
+    
+
 
     <mat-form-field>
       <input matInput placeholder="password" formControlName="password" type="password">

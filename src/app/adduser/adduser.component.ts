@@ -22,6 +22,7 @@ export class AdduserComponent implements OnInit, OnDestroy {
       phone : ['',Validators.required] ,
       notes : ['',Validators.required],
       roleselect : ['',Validators.required],
+      designation : [''],
       password : ['',Validators.required],
   });
    }
