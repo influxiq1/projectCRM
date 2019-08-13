@@ -13,7 +13,7 @@
 </mat-form-field><br>
 
 <mat-form-field>
-    <input matInput type="number" placeholder="team members" formControlName="teammembers" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.teammembers.errors}" (blur)="inputBlur('teammembers')">
+    <input matInput placeholder="team members" formControlName="teammembers" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.teammembers.errors}" (blur)="inputBlur('teammembers')">
     <mat-error *ngIf="onSignUpValidate.teammembers.errors && onSignUpValidate.teammembers.errors.required">Field cannot be blank</mat-error>
 </mat-form-field><br>
 

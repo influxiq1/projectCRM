@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import{FormGroup,FormBuilder,Validators,FormControl} from '@angular/forms';
 import{HttpClient} from '@angular/common/http';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-messages:any = '';
+export class LoginComponent implements OnInit, OnDestroy {
+  // public loginSubscribe: Subject<void> = new Subject();
+  public loginSubscribe:Subscription;
+  messages:any = '';
   account_validation_messages = {
     'email': [
       { type: 'required', message: 'Email is required' },
       { type: 'pattern', message: 'invalid Email Format' }
     ]}
+
    
+
 loginform:FormGroup;
 constructor(public build:FormBuilder, private http:HttpClient){
   this.loginform = this.build.group({
@@ -40,7 +45,7 @@ constructor(public build:FormBuilder, private http:HttpClient){
       let data: any = {};
       data = this.loginform.value;
       let link = 'http://166.62.39.137:5050/login';
-      this.http.post(link, data).subscribe(response=>{
+     this.loginSubscribe = this.http.post(link, data).subscribe(response=>{
         let result :any = {};
         result = response;
         if(result.status == 'success'){
@@ -52,6 +57,9 @@ constructor(public build:FormBuilder, private http:HttpClient){
     }
    
 
+  }
+  ngOnDestroy() {
+    this.loginSubscribe.unsubscribe();
   }
 
   inputBlur(val: any) {
