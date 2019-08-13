@@ -15,6 +15,7 @@ import { SingupComponent } from './singup/singup.component';
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
 import { ProjectmanagementComponent } from './projectmanagement/projectmanagement.component';
 import { RolemanagementComponent } from './rolemanagement/rolemanagement.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { RolemanagementComponent } from './rolemanagement/rolemanagement.compone
     SingupComponent,
     UsermanagementComponent,
     ProjectmanagementComponent,
-    RolemanagementComponent
+    RolemanagementComponent,
+    DashboardComponent
   ],
   imports: [
     DemoMaterialModule,
