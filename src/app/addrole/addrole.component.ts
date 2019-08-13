@@ -41,8 +41,7 @@ export class AddroleComponent implements OnInit {
             this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
             console.log("res");
             let result:any;
-            result=res;
-            
+            result=res;            
             alert(result.status);
         });
     }
