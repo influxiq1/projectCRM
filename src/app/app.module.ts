@@ -16,6 +16,8 @@ import { UsermanagementComponent } from './usermanagement/usermanagement.compone
 import { ProjectmanagementComponent } from './projectmanagement/projectmanagement.component';
 import { RolemanagementComponent } from './rolemanagement/rolemanagement.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddroleComponent } from './addrole/addrole.component';
+import { AdduserComponent } from './adduser/adduser.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UsermanagementComponent,
     ProjectmanagementComponent,
     RolemanagementComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddroleComponent,
+    AdduserComponent
   ],
   imports: [
     DemoMaterialModule,

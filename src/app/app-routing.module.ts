@@ -10,6 +10,8 @@ import { ForgotpassComponent } from './forgotpass/forgotpass.component';
 import { SingupComponent } from './singup/singup.component';
 import { RolemanagementComponent } from './rolemanagement/rolemanagement.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddroleComponent } from './addrole/addrole.component';
+import { AdduserComponent } from './adduser/adduser.component';
 const appRoutes: Routes = [
   { path: '', component: AboutusComponent,data: {
       meta: {
@@ -52,6 +54,18 @@ const appRoutes: Routes = [
 }},
 
 {path: 'dashboard', component:DashboardComponent, data: 
+{meta:{
+  title: 'Role Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'addrole', component:AddroleComponent, data: 
+{meta:{
+  title: 'Role Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'adduser', component:AdduserComponent, data: 
 {meta:{
   title: 'Role Management',
   description: 'Would you like to Role Management?'
