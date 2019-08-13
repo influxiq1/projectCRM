@@ -13,6 +13,7 @@ export class AdduserComponent implements OnInit, OnDestroy {
   addUserform: FormGroup;
   addUserSubscribe: Subscription;
   allRoles : any = [];
+  isSubmitted = false;
   
  
   constructor(public http: HttpClient, public formBuilder: FormBuilder) {
@@ -45,8 +46,29 @@ export class AdduserComponent implements OnInit, OnDestroy {
     });
   }
 
+  get onFormValidate()
+  {
+    return this.addUserform.controls;
+  }
+
+  inputBlur(val: any) {
+    this.addUserform.controls[val].markAsUntouched();
+  }
+
+//     this.addUserForm.valueChanges.subscribe(newValue=>{
+//     this.filteredValues = this.filterValues(newValue);
+// })
+
+
+//     filterValues(search: string) {
+//     return this.testValues.filter(value=>
+//     value.toLowerCase().indexOf(search.toLowerCase()) === 0);
+// }
+  
+
   onSubmit()
   {
+    this.isSubmitted = true;
     if(this.addUserform.valid)
     {
     
