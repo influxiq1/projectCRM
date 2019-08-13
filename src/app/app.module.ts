@@ -18,6 +18,7 @@ import { RolemanagementComponent } from './rolemanagement/rolemanagement.compone
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddroleComponent } from './addrole/addrole.component';
 import { AdduserComponent } from './adduser/adduser.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AdduserComponent } from './adduser/adduser.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,MetaModule.forRoot(), BrowserAnimationsModule
+    AppRoutingModule,MetaModule.forRoot(), BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

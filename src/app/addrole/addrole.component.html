@@ -1,1 +1,26 @@
-<p>addrole works!</p>
+
+
+<form [formGroup]="formGroup">
+<mat-form-field>
+    <input matInput placeholder="role name" formControlName="rolename" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.rolename.errors}" (blur)="inputBlur('rolename')">
+    <mat-error *ngIf="onSignUpValidate.rolename.errors && onSignUpValidate.rolename.errors.required">Field cannot be blank</mat-error>
+</mat-form-field><br>
+
+
+<mat-form-field>
+    <textarea matInput placeholder="role description" formControlName="roledesc" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.roledesc.errors}" (blur)="inputBlur('roledesc')"></textarea>
+    <mat-error *ngIf="onSignUpValidate.roledesc.errors && onSignUpValidate.roledesc.errors.required">Field cannot be blank</mat-error>
+</mat-form-field><br>
+
+<mat-form-field>
+    <input matInput type="number" placeholder="team members" formControlName="teammembers" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.teammembers.errors}" (blur)="inputBlur('teammembers')">
+    <mat-error *ngIf="onSignUpValidate.teammembers.errors && onSignUpValidate.teammembers.errors.required">Field cannot be blank</mat-error>
+</mat-form-field><br>
+
+<mat-radio-group aria-label="Select an option" formControlName="status">
+    <mat-radio-button value=1 checked>Active</mat-radio-button>
+    <mat-radio-button value=0>Inactive</mat-radio-button>
+  </mat-radio-group><br>
+  <button (click)="onSubmit()" mat-raised-button >SUBMIT</button>
+</form>
+   
