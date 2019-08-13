@@ -39,7 +39,11 @@ export class AddroleComponent implements OnInit {
             console.log(this.formGroup.value);
             let data : any = { "source": "rolemanagement", "data": this.formGroup.value };
             this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
-            console.log(res);
+            console.log("res");
+            let result:any;
+            result=res;
+            
+            alert(result.status);
         });
     }
     else

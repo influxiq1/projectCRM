@@ -15,11 +15,11 @@ import { SingupComponent } from './singup/singup.component';
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
 import { ProjectmanagementComponent } from './projectmanagement/projectmanagement.component';
 import { RolemanagementComponent } from './rolemanagement/rolemanagement.component';
+import{HttpClientModule} from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddroleComponent } from './addrole/addrole.component';
 import { AdduserComponent } from './adduser/adduser.component';
-import { HttpClientModule } from '@angular/common/http';
-
+//import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
