@@ -19,7 +19,7 @@ export class ForgotpassComponent implements OnInit {
 forgotform:FormGroup;
   constructor(private build:FormBuilder, private http:HttpClient) {
     this.forgotform = this.build.group({
-      email:[null,Validators.compose([Validators.required, Validators.pattern(/^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/)])]
+      email:['',Validators.compose([Validators.required, Validators.pattern(/^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/)])]
     });
    }
 

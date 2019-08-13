@@ -8,6 +8,10 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotpassComponent } from './forgotpass/forgotpass.component';
 import { SingupComponent } from './singup/singup.component';
+import { RolemanagementComponent } from './rolemanagement/rolemanagement.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddroleComponent } from './addrole/addrole.component';
+import { AdduserComponent } from './adduser/adduser.component';
 const appRoutes: Routes = [
   { path: '', component: AboutusComponent,data: {
       meta: {
@@ -40,7 +44,33 @@ const appRoutes: Routes = [
       title: 'Sign Up',
       description: 'Would you like to sign up?'
     }
-  }}
+  }},
+
+  {path: 'rolemanagement', component:RolemanagementComponent, data: 
+  {meta:{
+    title: 'Role Management',
+    description: 'Would you like to Role Management?'
+  }
+}},
+
+{path: 'dashboard', component:DashboardComponent, data: 
+{meta:{
+  title: 'Role Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'addrole', component:AddroleComponent, data: 
+{meta:{
+  title: 'Role Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'adduser', component:AdduserComponent, data: 
+{meta:{
+  title: 'Role Management',
+  description: 'Would you like to Role Management?'
+}
+}}
 ];
 
 @NgModule({
