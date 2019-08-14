@@ -1,1 +1,61 @@
-<p>adduser works!</p>
+
+
+
+<form [formGroup]="addUserform">
+    <mat-form-field>
+        <input matInput placeholder="name" formControlName="username" [ngClass]="{'is-invalid':isSubmitted && onFormValidate.username.errors}" (blur)="inputBlur('username')">
+        <mat-error *ngIf="onFormValidate.username.errors && onFormValidate.username.errors.required">User name cannot be blank</mat-error>
+    </mat-form-field><br>
+    
+    <mat-form-field>
+      <input matInput placeholder="email" formControlName="email"  [ngClass]="{'is-invalid': isSubmitted && onFormValidate.email.errors}" (blur)="inputBlur('email')">
+      <mat-error *ngIf="onFormValidate.email.errors && onFormValidate.email.errors.required">Email cannot be blank</mat-error>
+    </mat-form-field><br>
+
+    <mat-form-field>
+      <input matInput placeholder="phone" formControlName="phone"  [ngClass]="{'is-invalid': isSubmitted && onFormValidate.phone.errors}" (blur)="inputBlur('phone')">
+      <mat-error *ngIf="onFormValidate.phone.errors && onFormValidate.phone.errors.required">Phone cannot be blank</mat-error>
+    </mat-form-field><br>
+ 
+    <mat-form-field>
+      <textarea matInput placeholder="notes" formControlName="notes"  [ngClass]="{'is-invalid': isSubmitted && onFormValidate.notes.errors}" (blur)="inputBlur('notes')"></textarea>
+      <mat-error *ngIf="onFormValidate.notes.errors && onFormValidate.notes.errors.required">Notes cannot be blank</mat-error>
+    </mat-form-field><br>
+ 
+   
+    
+    <mat-form-field >
+      <input type = "text" 
+         placeholder = "Select a role" 
+        
+         matInput 
+         formControlName = "roleselect" 
+         [matAutocomplete] = "auto"
+         [ngClass]="{'is-invalid':isSubmitted && onFormValidate.roleselect.errors}"
+         (blur)="inputBlur('roleselect')">
+      <mat-autocomplete #auto = "matAutocomplete">
+         <mat-option *ngFor = "let option of allRoles" [value] = "option.rolename">
+            {{option.rolename}}
+         </mat-option>
+       </mat-autocomplete>
+       <mat-error *ngIf="onFormValidate.roleselect.errors && onFormValidate.roleselect.errors.required">Please select a role</mat-error>
+      
+   </mat-form-field>
+    <br>
+
+    <mat-label>Designation:</mat-label><br>
+    <mat-radio-group aria-label="Select an option" formControlName="designation">
+      <mat-radio-button value="1" checked>Senior</mat-radio-button>
+      <mat-radio-button value="2">Junior</mat-radio-button>
+    </mat-radio-group><br>
+    
+
+
+    <mat-form-field>
+      <input matInput placeholder="password" formControlName="password" type="password"  [ngClass]="{'is-invalid': isSubmitted && onFormValidate.password.errors}" (blur)="inputBlur('password')">
+      <mat-error *ngIf="onFormValidate.password.errors && onFormValidate.password.errors.required">Password cannot be blank</mat-error>
+    </mat-form-field><br>
+
+      <button (click)="onSubmit()" mat-raised-button >SUBMIT</button>
+    </form>
+

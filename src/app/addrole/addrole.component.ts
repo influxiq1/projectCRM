@@ -1,16 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import  { FormBuilder , FormControl , FormGroup , Validator, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-addrole',
   templateUrl: './addrole.component.html',
   styleUrls: ['./addrole.component.css']
   
 })
+<<<<<<< HEAD
 export class AddroleComponent implements OnInit {
  
   public params_id: any = [];
+=======
+export class AddroleComponent implements OnInit, OnDestroy {
+  addroleSubscribe: Subscription;
+>>>>>>> 182ee388f641687304ae6a8139468f539d9f2733
   isSubmitted=false;
   baseUrl='http://166.62.39.137:5050/';
   formGroup : FormGroup;
@@ -71,11 +77,19 @@ export class AddroleComponent implements OnInit {
     
             // console.log(this.formGroup.value);
             let data : any = { "source": "rolemanagement", "data": this.formGroup.value };
+<<<<<<< HEAD
             this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
             // console.log("res");
             let result:any;
             result=res;
             this.router.navigate(['role-management']);
+=======
+            this.addroleSubscribe = this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
+            console.log("res");
+            let result:any;
+            result=res;            
+            alert(result.status);
+>>>>>>> 182ee388f641687304ae6a8139468f539d9f2733
         });
     }
   }
@@ -106,6 +120,10 @@ export class AddroleComponent implements OnInit {
 
     });
   }
+  }
+
+  ngOnDestroy() {
+    this.addroleSubscribe.unsubscribe();
   }
 
 }
