@@ -9,14 +9,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./addrole.component.css']
   
 })
-<<<<<<< HEAD
-export class AddroleComponent implements OnInit {
- 
-  public params_id: any = [];
-=======
 export class AddroleComponent implements OnInit, OnDestroy {
+  public params_id: any = [];
   addroleSubscribe: Subscription;
->>>>>>> 182ee388f641687304ae6a8139468f539d9f2733
+  resultdataSubscribe: Subscription;
   isSubmitted=false;
   baseUrl='http://166.62.39.137:5050/';
   formGroup : FormGroup;
@@ -42,12 +38,12 @@ export class AddroleComponent implements OnInit, OnDestroy {
     let data:any = {'source':'rolemanagement','condition':{'_id':this.params_id},'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU3NzAzOTIsImlhdCI6MTU2NTY4Mzk5Mn0.6ioCh95UTocKSy6fl9UtpP29TUEMdXG7fg0_C4IcRd8'};
     let link:any = 'http://166.62.39.137:5050/datalist';
     
-    this.http.post(link,data).subscribe(Response=>{
+    this.resultdataSubscribe =  this.http.post(link,data).subscribe(Response=>{
       console.log('EDIT DATA BLOCK');
       let resultdata:any = {};
       resultdata = Response;
-      // console.log('resultdata.res[0]')
-      // console.log(resultdata.res[0])
+      console.log('resultdata.res[0]')
+      console.log(resultdata.res[0])
       this.formGroup.patchValue({
         'rolename':resultdata.res[0].rolename,
         'roledesc':resultdata.res[0].roledesc,
@@ -74,22 +70,12 @@ export class AddroleComponent implements OnInit, OnDestroy {
     this.isSubmitted = true;
     if(this.formGroup.valid)
     {
-    
-            // console.log(this.formGroup.value);
             let data : any = { "source": "rolemanagement", "data": this.formGroup.value };
-<<<<<<< HEAD
-            this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
-            // console.log("res");
-            let result:any;
-            result=res;
             this.router.navigate(['role-management']);
-=======
             this.addroleSubscribe = this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
             console.log("res");
-            let result:any;
-            result=res;            
-            alert(result.status);
->>>>>>> 182ee388f641687304ae6a8139468f539d9f2733
+            let result:any = {};
+            result=res;
         });
     }
   }
@@ -108,8 +94,7 @@ export class AddroleComponent implements OnInit, OnDestroy {
     }};
     // console.log(data)
     // console.log(this.formGroup.status)
-    let link:any = 'http://166.62.39.137:5050/addorupdatedata';
-    this.http.post(link,data).subscribe(response=>{
+    this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe(response=>{
       let result: any = {};
       result = response;
       // console.log(result);
@@ -123,7 +108,8 @@ export class AddroleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.addroleSubscribe.unsubscribe();
+    // this.addroleSubscribe.unsubscribe;
+    // this.resultdataSubscribe.unsubscribe;
   }
 
 }
