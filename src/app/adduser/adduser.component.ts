@@ -78,7 +78,7 @@ export class AdduserComponent implements OnInit, OnDestroy {
 ​
   ngOnInit() {
     // this.dropdownGo();
-
+if(this.param_id!=null){
     let data:any = {'source':'usermanagement','condition':{'_id':this.param_id},'token':
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'};
   this.http.post(this.baseUrl+'datalist',data).subscribe(Response=>{
@@ -87,8 +87,15 @@ export class AdduserComponent implements OnInit, OnDestroy {
     console.log('result........');
     console.log(result);
     console.log('+++++++++++');
-    
-  })
+    this.addUserform.patchValue({
+      'username' : result.res[0].username , 
+      'email' :  result.res[0].email,
+      'phone' :  result.res[0].phone,
+      'notes' : result.res[0].notes,
+      'designation' :result.res[0].designation 
+  });
+    });
+  }
   }
   
  
@@ -190,7 +197,32 @@ private _filter(value: string): string[] {
     alert('Invalid form');
   }
   ngOnDestroy() {
-    this.addUserSubscribe.unsubscribe();
+    // this.addUserSubscribe.unsubscribe();
     }
+
+    onUpdate(){
+
+      let data:any = {'source':'usermanagement',
+      'data':{
+        'id':this.param_id,
+        'username' : this.addUserform.value.username , 
+        'email' :  this.addUserform.value.email,
+        'phone' :  this.addUserform.value.phone,
+        'notes' : this.addUserform.value.notes,
+        'designation' :this.addUserform.value.designation,
+        'fruitCtrl':this.addUserform.value.fruitCtrl
+      },
+    'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'
+  };
+  
+    this.http.post(this.baseUrl+'addorupdatedata',data).subscribe(response=>{
+      let result:any={};
+      result = response;
+      console.log('update........');
+      console.log(result);
+    });
+    this.addUserform.reset();
+    this.route.navigate(['/user-management']);
+  }
 ​
 }
