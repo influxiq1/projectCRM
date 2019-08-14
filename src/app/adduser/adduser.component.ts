@@ -2,6 +2,11 @@ import { FormBuilder , FormGroup , FormControl , Validators } from '@angular/for
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+export interface Role{
+  rolename : string;
+} 
 
 @Component({
   selector: 'app-adduser',
@@ -14,6 +19,9 @@ export class AdduserComponent implements OnInit, OnDestroy {
   addUserSubscribe: Subscription;
   allRoles : any = [];
   isSubmitted = false;
+  filteredOptions: Observable<string[]>;
+
+  
   
  
   constructor(public http: HttpClient, public formBuilder: FormBuilder) {
@@ -26,7 +34,11 @@ export class AdduserComponent implements OnInit, OnDestroy {
       designation : [''],
       password : ['',Validators.required],
   });
+
+
+  
    }
+
 
   ngOnInit() {
     this.dropdownGo();
@@ -39,13 +51,16 @@ export class AdduserComponent implements OnInit, OnDestroy {
       console.log("res");
             let result:any;
             result = res;   
-            // console.log(result.res);
-            this.allRoles = (result.res);
-         
+            console.log(result.res);
+            this.allRoles = result.res;
+
+          
+
            
     });
   }
 
+  
   get onFormValidate()
   {
     return this.addUserform.controls;
@@ -55,16 +70,12 @@ export class AdduserComponent implements OnInit, OnDestroy {
     this.addUserform.controls[val].markAsUntouched();
   }
 
-//     this.addUserForm.valueChanges.subscribe(newValue=>{
-//     this.filteredValues = this.filterValues(newValue);
-// })
+   
+
+    
 
 
-//     filterValues(search: string) {
-//     return this.testValues.filter(value=>
-//     value.toLowerCase().indexOf(search.toLowerCase()) === 0);
-// }
-  
+
 
   onSubmit()
   {
