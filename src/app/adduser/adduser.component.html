@@ -24,7 +24,7 @@
  
    
     
-    <mat-form-field >
+    <!-- <mat-form-field >
       <input type = "text" 
          placeholder = "Select a role" 
         
@@ -40,8 +40,38 @@
        </mat-autocomplete>
        <mat-error *ngIf="onFormValidate.roleselect.errors && onFormValidate.roleselect.errors.required">Please select a role</mat-error>
       
-   </mat-form-field>
+   </mat-form-field> -->
     <br>
+
+
+<!-- Autocomplete start -->
+<mat-form-field class="example-chip-list">
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip
+        *ngFor="let fruit of fruits"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(fruit)">
+        {{fruit}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Select a role"
+        #fruitInput
+        [formControl]="fruitCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit.rolename">
+        {{fruit.rolename}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+<!--  Autocomplete end -->
 
     <mat-label>Designation:</mat-label><br>
     <mat-radio-group aria-label="Select an option" formControlName="designation">
