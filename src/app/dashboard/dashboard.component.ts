@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import{AdduserComponent} from '../adduser/adduser.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private add:AdduserComponent) {
+    // console.log(this.add.listingarray);
+   }
 
   ngOnInit() {
   }

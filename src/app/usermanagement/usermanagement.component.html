@@ -1,1 +1,14 @@
 <p>usermanagement works!</p>
+<lib-listing *ngIf="listingarray.length>0"
+[datasource]="listingarray"
+[sourcedata]="tablename"
+[skip]="listingarray_skip"
+[modify_header_array]="listingarray_modify_header"
+[jwttoken]="jwttoken"
+[apiurl]="apiurl"
+[deleteendpoint]="deletesingledata"
+[updateendpoint]="addorupdatedata"
+[statusarr]="statusarray"
+[editroute]="editroute"
+>
+</lib-listing>
