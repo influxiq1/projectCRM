@@ -9,7 +9,7 @@ import{HttpClient} from '@angular/common/http';
 })
 export class ForgotpassComponent implements OnInit {
 
-  message: any = '';
+  messages: any = '';
   account_validation_messages = {
     'email': [
       { type: 'required', message: 'Email is required' },
@@ -34,20 +34,20 @@ forgotform:FormGroup;
     let x:any;
     for(x in this.forgotform.controls){
       this.forgotform.controls[x].markAsTouched();
-      console.log(this.forgotform.value);
+      // console.log(this.forgotform.value);
     }
     let link:any = 'http://166.62.39.137:5050/forgetpassword';
     let data:any = this.forgotform.value;
     if(this.forgotform.valid){
       this.http.post(link,data).subscribe(response=>{
-        console.log('res.......'+response);
+        // console.log('res.......'+response);
         let result: any;
          result = response;
         if(result.status == 'success'){
         this.forgotform.reset();
         }
-        console.log(result.status);
-        this.message = result.status;
+        // console.log(result.msg);
+        this.messages = result.msg;
         
       })
     }

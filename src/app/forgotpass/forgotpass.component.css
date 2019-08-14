@@ -1,0 +1,23 @@
+.title{
+    text-align: center; padding-top: 10%;color:rgb(82, 1, 7)
+}
+.sub-title{
+    text-align: center;color:rgb(87, 54, 64)
+}
+.outer-div{
+    padding-left: 40%;
+}
+.login{
+    text-align: center;border: 1px solid black;
+    width: 260px;
+    height:340px; 
+    padding-top: 1px;
+    margin: 0px; 
+    background: rgba(224, 214, 214, 0.466)
+}
+h2{
+    color: rgb(2, 59, 2); 
+}
+.btn{
+    background: darkgrey
+}

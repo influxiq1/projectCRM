@@ -19,7 +19,8 @@ import{HttpClientModule} from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddroleComponent } from './addrole/addrole.component';
 import { AdduserComponent } from './adduser/adduser.component';
-//import { HttpClientModule } from '@angular/common/http';
+import{ListingModule} from 'listing-angular7';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { AdduserComponent } from './adduser/adduser.component';
     ReactiveFormsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,MetaModule.forRoot(), BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ListingModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

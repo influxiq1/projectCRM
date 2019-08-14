@@ -1,3 +1,29 @@
-.login {
-    text-align: center;border: 1px solid black; width: 260px;height:360px; padding: 1px;margin: 0px; background: rgba(224, 214, 214, 0.466)
+.title{
+    text-align: center; 
+    padding-top: 10%;color:rgb(82, 1, 7)
+}
+.outer-div{
+    
+    padding-left: 40%;
+    
+}
+
+.login{
+    border: 1px solid black;
+    text-align: center;
+    width: 260px;height:360px;
+    background: rgba(224, 214, 214, 0.466)
+}
+
+
+h2{
+    color: rgb(2, 59, 2)
+}
+.btn{
+    background: darkgrey;
+    
+}
+.link{
+    float:right; margin:0px; padding-top: 15%;
+    padding-right:10px;
 }

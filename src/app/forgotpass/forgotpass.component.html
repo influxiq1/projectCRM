@@ -1,8 +1,8 @@
-<h1 style="text-align: center; padding-top: 10%;color:rgb(82, 1, 7)">Forgot Your Password ?</h1>
-<h4 style="text-align: center;color:rgb(87, 54, 64)">Please enter the email address registered on your account</h4>
-<div style="padding-left: 40%;">
-<div class="login" style="text-align: center;border: 1px solid black; width: 260px;height:360px; padding-top: 1px;margin: 0px; background: rgba(224, 214, 214, 0.466)">
-<h2 style="color: rgb(2, 59, 2); ">Reset Password</h2>
+<h1 class="title">Forgot Your Password ?</h1>
+<h4 class="sub-title">Please enter the email address registered on your account</h4>
+<div class="outer-div">
+<div class="login">
+<h2>Reset Password</h2>
 <form [formGroup]="forgotform" (ngSubmit)="SubmitData()">
 <div>
 <mat-form-field appearance="outline">
@@ -14,10 +14,10 @@
     <mat-error class="error-message" *ngIf="forgotform.get('email').hasError(validation.type) && (forgotform.get('email').dirty || forgotform.get('email').touched)">{{validation.message}}</mat-error>
   </mat-error>
 </mat-form-field>
-<h3>{{message}}</h3>
+<h3>{{messages}}</h3>
 </div>
 <div>
-  <button mat-raised-button style="background: darkgrey">Reset Password</button>
+  <button mat-raised-button class="btn">Reset Password</button>
 </div>
 </form>
 </div>

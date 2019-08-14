@@ -35,7 +35,7 @@ constructor(public build:FormBuilder, private http:HttpClient){
     for( let x in this.loginform.controls){
       this.loginform.controls[x].markAsTouched();
     }
-    console.log(this.loginform.value);
+    // console.log(this.loginform.value);
     if(this.loginform.valid) {
       let data: any = {};
       data = this.loginform.value;
@@ -47,7 +47,7 @@ constructor(public build:FormBuilder, private http:HttpClient){
         this.loginform.reset();
         }
         this.messages = result.msg;
-        console.log(this.messages);
+        // console.log(this.messages);
       })
     }
    

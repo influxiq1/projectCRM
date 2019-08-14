@@ -46,7 +46,7 @@ const appRoutes: Routes = [
     }
   }},
 
-  {path: 'rolemanagement', component:RolemanagementComponent, data: 
+  {path: 'role-management', component:RolemanagementComponent, data: 
   {meta:{
     title: 'Role Management',
     description: 'Would you like to Role Management?'
@@ -59,13 +59,19 @@ const appRoutes: Routes = [
   description: 'Would you like to Role Management?'
 }
 }},
-{path: 'addrole', component:AddroleComponent, data: 
+{path: 'role-management/add-role/:id', component:AddroleComponent, data: 
 {meta:{
   title: 'Role Management',
   description: 'Would you like to Role Management?'
 }
 }},
-{path: 'adduser', component:AdduserComponent, data: 
+{path: 'add-role', component:AddroleComponent, data: 
+{meta:{
+  title: 'Role Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'add-user', component:AdduserComponent, data: 
 {meta:{
   title: 'Role Management',
   description: 'Would you like to Role Management?'
