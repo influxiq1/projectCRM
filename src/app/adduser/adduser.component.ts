@@ -6,15 +6,15 @@ import {map, startWith} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-
-
+​
+​
 @Component({
   selector: 'app-adduser',
   templateUrl: './adduser.component.html',
   styleUrls: ['./adduser.component.css']
 })
 export class AdduserComponent implements OnInit, OnDestroy {
-
+​
   visible = true;
   selectable = true;
   removable = true;
@@ -23,21 +23,21 @@ export class AdduserComponent implements OnInit, OnDestroy {
   fruitCtrl = new FormControl('',Validators.required);
   filteredFruits: Observable<string[]>;
   fruits: string[] = [];
-
+​
   @ViewChild('fruitInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
-
-
+​
+​
   private baseUrl='http://166.62.39.137:5050/';
   addUserform: FormGroup;
   addUserSubscribe: Subscription;
   allRoles : any = [];
   isSubmitted = false;
-
+​
  
   constructor(public http: HttpClient, public formBuilder: FormBuilder) {
-
-
+​
+​
     let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0"};
     this.http.post(this.baseUrl + 'datalist',data).subscribe((res)=>{
       console.log("res");
@@ -48,13 +48,13 @@ export class AdduserComponent implements OnInit, OnDestroy {
             console.log(this.allRoles);
            
     });
-
-
+​
+​
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allRoles.slice()));
     
-
+​
     this.addUserform = this.formBuilder.group({
       username : ['',Validators.required] , 
       email : ['',Validators.required] ,
@@ -64,7 +64,7 @@ export class AdduserComponent implements OnInit, OnDestroy {
       password : ['',Validators.required],
   });
    }
-
+​
   ngOnInit() {
     // this.dropdownGo();
   }
@@ -78,29 +78,29 @@ export class AdduserComponent implements OnInit, OnDestroy {
     if (!this.matAutocomplete.isOpen) {
       const input = event.input;
       const value = event.value;
-
+​
       // Add our fruit
       if ((value || '').trim()) {
         this.fruits.push(value.trim());
       }
-
+​
       // Reset the input value
       if (input) {
         input.value = '';
       }
-
+​
       this.fruitCtrl.setValue(null);
     }
   }
-
+​
   remove(fruit: string): void {
     const index = this.fruits.indexOf(fruit);
-
+​
     if (index >= 0) {
       this.fruits.splice(index, 1);
     }
   }
-
+​
   selected(event: MatAutocompleteSelectedEvent): void {
     this.fruits.push(event.option.viewValue);
     this.fruitInput.nativeElement.value = '';
@@ -108,20 +108,20 @@ export class AdduserComponent implements OnInit, OnDestroy {
     console.log('data');
     console.log(this.fruits)
   }
-
+​
   private _filter(value: string): string[] {
     console.log(value)
     const filterValue = value.toLocaleLowerCase();
     console.log(filterValue);
-
+​
     // return this.allRoles.filter((movie: string) =>
     // movie.toLocaleLowerCase().indexOf(filterValue) !== -1);
-
+​
     return this.allRoles.filter((fruit: String) => fruit.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) === 0 );
   }
-
+​
  
-
+​
   dropdownGo()
   {
     let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0"};
@@ -135,17 +135,17 @@ export class AdduserComponent implements OnInit, OnDestroy {
            
     });
   }
-
+​
   get onFormValidate()
   {
     return this.addUserform.controls;
   }
-
+​
   inputBlur(val: any) {
     this.addUserform.controls[val].markAsUntouched();
   }
-
-
+​
+​
   onSubmit()
   {
     this.isSubmitted = true;
@@ -172,5 +172,5 @@ export class AdduserComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.addUserSubscribe.unsubscribe();
     }
-
+​
 }

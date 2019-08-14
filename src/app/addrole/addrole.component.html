@@ -21,6 +21,7 @@
     <mat-radio-button value=1 checked>Active</mat-radio-button>
     <mat-radio-button value=0>Inactive</mat-radio-button>
   </mat-radio-group><br>
-  <button (click)="onSubmit()" mat-raised-button >SUBMIT</button>
+  <button (click)="onSubmit()" mat-raised-button *ngIf="params_id == null">SUBMIT</button>
+  <button (click)="onUpdate()" mat-raised-button *ngIf="params_id !=null">UPDATE</button>
 </form>
    
