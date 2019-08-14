@@ -37,7 +37,7 @@
     "express": "^4.17.1",
     "filter-env": "^1.1.2",
     "hammerjs": "^2.0.8",
-    "listing-angular7": "0.0.90",
+    "listing-angular7": "0.0.93",
     "mat-file-upload": "^1.0.0",
     "moment": "^2.24.0",
     "ngx-cookie-service": "^2.2.0",

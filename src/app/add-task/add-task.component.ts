@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormControl,FormBuilder ,FormGroup, Validators } from '@angular/forms'
+import { FormControl,FormBuilder ,FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-add-task',
@@ -13,9 +14,17 @@ export class AddTaskComponent implements OnInit {
   allUsers :  any = [];
   formGroup : FormGroup;
   exten : any ;
+  token : any ;
   extentions : any = ['jpg','jpeg','png','mp4','wmv'];
   isSubmitted = false;
-  constructor( private http : HttpClient , private formBuilder : FormBuilder) {
+  constructor( private http : HttpClient , private formBuilder : FormBuilder , private cookieService : CookieService) {
+   
+    this.cookieService.getAll();
+     this.token = this.cookieService.get('token');
+    // console.log(this.cookieService.getAll());
+    // console.log(this.cookieService.get('token'));
+
+
     this.formGroup = formBuilder.group({
       taskname : ['', Validators.required],
       taskdesc : ['',Validators.required],
@@ -35,7 +44,7 @@ export class AddTaskComponent implements OnInit {
 
   userPopulate()
   {
-    let data : any = { "source": "usermanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTgyMTEsImlhdCI6MTU2NTc3MTgxMX0.8hlkHlcp__RgVLhcpY-EO_8FTvDfzonTvc_hZ4eNYSo"};
+    let data : any = { "source": "usermanagement", "token" : this.token};
     this.http.post(this.baseUrl + 'datalist',data).subscribe((res)=>{
       console.log("res");
             let result:any;
@@ -77,5 +86,14 @@ export class AddTaskComponent implements OnInit {
   onSubmit()
   {
     console.log(this.formGroup.value);
+    let data : any = { "source": "taskmanagement", "data": this.formGroup.value };
+            console.log(data)
+            this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
+    let result:any;
+    result = res;
+    console.log(result);
+    
+    
+  })
   }
 }

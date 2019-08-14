@@ -21,6 +21,7 @@ import { AddroleComponent } from './addrole/addrole.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import{ListingModule} from 'listing-angular7';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { CookieService } from 'ngx-cookie-service';
 // import { MomentModule } from 'ngx-moment';
 
 
@@ -53,7 +54,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
 
     
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

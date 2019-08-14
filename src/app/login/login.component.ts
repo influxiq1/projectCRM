@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import{FormGroup,FormBuilder,Validators,FormControl} from '@angular/forms';
 import{HttpClient} from '@angular/common/http';
 import { Subject, Subscription } from 'rxjs';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { Subject, Subscription } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  
   // public loginSubscribe: Subject<void> = new Subject();
   public loginSubscribe:Subscription;
   messages:any = '';
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    
 
 loginform:FormGroup;
-constructor(public build:FormBuilder, private http:HttpClient){
+constructor(public build:FormBuilder, private http:HttpClient , public cookieService: CookieService){
   this.loginform = this.build.group({
     email:['', Validators.compose([Validators.required, Validators.pattern(/^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/)])],
     password:['',Validators.required]
@@ -49,6 +51,10 @@ constructor(public build:FormBuilder, private http:HttpClient){
         let result :any = {};
         result = response;
         if(result.status == 'success'){
+          console.log(result.data[0]);
+          console.log(result.data);
+          console.log(result.token);
+          this.cookieService.set('token',result.token);
         this.loginform.reset();
         }
         this.messages = result.msg;

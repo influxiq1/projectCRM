@@ -6,6 +6,7 @@ import {map, startWith} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import{ActivatedRoute,Router} from '@angular/router';
 ​
 ​
 @Component({
@@ -34,8 +35,9 @@ export class AdduserComponent implements OnInit, OnDestroy {
   allRoles : any = [];
   isSubmitted = false;
 ​
- 
-  constructor(public http: HttpClient, public formBuilder: FormBuilder) {
+ param_id:any;
+  constructor(public http: HttpClient, public formBuilder: FormBuilder,
+    private activated:ActivatedRoute,private route:Router) {
 ​
 ​
     let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0"};
@@ -63,10 +65,30 @@ export class AdduserComponent implements OnInit, OnDestroy {
       designation : [''],
       password : ['',Validators.required],
   });
+
+    this.activated.params.subscribe(param=>{
+      let params_id:any;
+      params_id = param;
+      this.param_id = params_id.id;
+      console.log('param_id');
+      console.log(this.param_id)
+    })
+
    }
 ​
   ngOnInit() {
     // this.dropdownGo();
+
+    let data:any = {'source':'usermanagement','condition':{'_id':this.param_id},'token':
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'};
+  this.http.post(this.baseUrl+'datalist',data).subscribe(Response=>{
+    let result:any;
+    result = Response;
+    console.log('result........');
+    console.log(result);
+    console.log('+++++++++++');
+    
+  })
   }
   
  
@@ -109,17 +131,15 @@ export class AdduserComponent implements OnInit, OnDestroy {
     console.log(this.fruits)
   }
 ​
-  private _filter(value: string): string[] {
-    console.log(value)
-    const filterValue = value.toLocaleLowerCase();
-    console.log(filterValue);
-​
-    // return this.allRoles.filter((movie: string) =>
-    // movie.toLocaleLowerCase().indexOf(filterValue) !== -1);
-​
-    return this.allRoles.filter((fruit: String) => fruit.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) === 0 );
-  }
-​
+private _filter(value: string): string[] {
+  if (value) {
+    value = value.toLocaleLowerCase();
+    return this.allRoles.filter((fruit: string) =>
+        fruit.rolename.toLowerCase().indexOf(value) !== -1 );
+} else {
+    return this.allRoles;
+}
+​}
  
 ​
   dropdownGo()
