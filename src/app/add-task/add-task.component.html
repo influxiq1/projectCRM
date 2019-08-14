@@ -1,0 +1,55 @@
+<p>add-task works!</p>
+<form [formGroup]="formGroup">
+    <mat-form-field>
+    <input matInput placeholder="task name" formControlName="taskname" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.taskname.errors}">
+    <mat-error *ngIf="onSignUpValidate.taskname.errors && onSignUpValidate.taskname.errors.required">Task Name cannot be blank</mat-error>
+    </mat-form-field><br>
+
+    <mat-form-field>
+    <textarea matInput placeholder="task decription" formControlName="taskdesc" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.taskdesc.errors}"></textarea>
+    <mat-error *ngIf="onSignUpValidate.taskdesc.errors && onSignUpValidate.taskdesc.errors.required">Task decription cannot be blank</mat-error>
+    </mat-form-field><br>
+
+    
+    <mat-radio-group aria-label="Select an option" formControlName="status">
+            <mat-radio-button value="in progress" checked>In Progress</mat-radio-button>
+            <mat-radio-button value="pending">Pending</mat-radio-button>
+            <mat-radio-button value="awaiting approval">Awaiting Approval</mat-radio-button>
+            <mat-radio-button value="done">Done</mat-radio-button>
+    </mat-radio-group><br>
+
+    <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Expected date" formControlName="exdate" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.taskname.errors}">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="onSignUpValidate.exdate.errors && onSignUpValidate.exdate.errors.required">Expected Date cannot be blank</mat-error>
+    </mat-form-field><br>
+
+    <mat-radio-group aria-label="Priority" formControlName="priority">
+            <mat-radio-button value="low" checked>low</mat-radio-button>  
+            <mat-radio-button value="med">med</mat-radio-button> 
+            <mat-radio-button value="high">high</mat-radio-button>
+    </mat-radio-group><br>
+
+    <mat-form-field>
+            <mat-label>Assigned to :</mat-label>
+            <mat-select formControlName="assigned" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.assigned.errors}">
+             <mat-option>Select an user</mat-option>
+                <mat-option *ngFor="let usr of allUsers" [value]="usr.username">
+                {{usr.username}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="onSignUpValidate.assigned.errors && onSignUpValidate.assigned.errors.required">please assign an user</mat-error>
+     </mat-form-field><br>
+
+     <mat-form-field>
+        <textarea matInput placeholder="notes" formControlName="notes" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.notes.errors}"></textarea>
+        <mat-error *ngIf="onSignUpValidate.notes.errors && onSignUpValidate.notes.errors.required">Notes cannot be blank</mat-error>
+     </mat-form-field><br>
+
+     
+     <mat-label>Add videos or screenshot</mat-label> <br>
+     <input type="file" (change)="onFileSelect($event)" formControlName="fileupload">
+     <br>
+     <button mat-raised-button (click)="onSubmit()">SUBMIT</button>
+</form>

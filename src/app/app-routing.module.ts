@@ -12,10 +12,11 @@ import { RolemanagementComponent } from './rolemanagement/rolemanagement.compone
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddroleComponent } from './addrole/addrole.component';
 import { AdduserComponent } from './adduser/adduser.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 import { ProjectmanagementComponent } from './projectmanagement/projectmanagement.component';
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
 const appRoutes: Routes = [
-  { path: '', component: AboutusComponent,data: {
+  { path: 'aboutus', component: AboutusComponent,data: {
       meta: {
           title: 'About US',
           description: 'Have you seen my rubber duckie?'
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
               description: 'Have you seen my rubber duckie?'
           }
       }},
-      {path: 'login', component:LoginComponent, data: 
+      {path: '', component:LoginComponent, data: 
       {meta:{
         title: 'Login',
         description: 'Have you seen my rubber duckie?'
@@ -76,6 +77,12 @@ const appRoutes: Routes = [
 {path: 'add-user', component:AdduserComponent, data: 
 {meta:{
   title: 'Role Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'add-task', component:AddTaskComponent, data: 
+{meta:{
+  title: 'Task Management',
   description: 'Would you like to Role Management?'
 }
 }},

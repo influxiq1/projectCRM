@@ -142,7 +142,7 @@ private _filter(value: string): string[] {
   if (value) {
     value = value.toLocaleLowerCase();
     return this.allRoles.filter((fruit: string) =>
-        fruit.rolename.toLowerCase().indexOf(value) !== -1);
+        fruit.rolename.toLowerCase().indexOf(value) !== -1 );
 } else {
     return this.allRoles;
 }
