@@ -20,6 +20,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddroleComponent } from './addrole/addrole.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import{ListingModule} from 'listing-angular7';
+import { AddTaskComponent } from './add-task/add-task.component';
+
+
 
 
 @NgModule({
@@ -35,7 +38,8 @@ import{ListingModule} from 'listing-angular7';
     RolemanagementComponent,
     DashboardComponent,
     AddroleComponent,
-    AdduserComponent
+    AdduserComponent,
+    AddTaskComponent
   ],
   imports: [
     DemoMaterialModule,
@@ -44,7 +48,8 @@ import{ListingModule} from 'listing-angular7';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,MetaModule.forRoot(), BrowserAnimationsModule,
     HttpClientModule,
-    ListingModule
+    ListingModule,
+
     
   ],
   providers: [],
