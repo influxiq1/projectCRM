@@ -1,1 +1,15 @@
 <p>document-management works!</p>
+
+
+<lib-listing *ngIf ='alldata.length>0'
+        [datasource] ='alldata'
+        [sourcedata] = 'tablename'
+        [skip] = 'alldata_skip'
+        [modify_header_array] = 'alldata_modify_header'
+        [deleteendpoint] = 'deleteendpoint'
+        [jwttoken] = 'jwttoken'
+        [apiurl] = 'link' 
+        [editroute] = 'editurl'
+        [updateendpoint] = 'updateurl' 
+        >
+      </lib-listing>

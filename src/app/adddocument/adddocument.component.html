@@ -1,12 +1,12 @@
 <form [formGroup]="documentmanagement">
 <mat-form-field>
-    <input matInput placeholder="Name" formControlName="name">
-    <mat-error></mat-error>
+    <input matInput placeholder="Name" formControlName="name" (blur)="inputblur(name)" >
+    <mat-error *ngIf="validate.name.errors && validate.name.errors.required">Name Can Not Be Blank</mat-error>
 </mat-form-field>
 <br>
 <mat-form-field>
-        <input matInput placeholder="Drive Link" formControlName="drivelink">
-        <mat-error></mat-error>
+        <input matInput placeholder="Drive Link" formControlName="drivelink" (blur)="inputblur(drivelink)">
+        <mat-error *ngIf="validate.drivelink.errors && validate.drivelink.errors.required">Drive Link Can Not Be Blank</mat-error>
 </mat-form-field>
 <br>
 <mat-radio-group formControlName="priority">
@@ -16,6 +16,6 @@
 </mat-radio-group>
 <br>
 
-<button mat-raised-button (click)="onSubmit()">Submit</button>
-<button mat-raised-button (click)="onUpdate()">Update</button>
+<button mat-raised-button (click)="onSubmit()" *ngIf = "param_id == null">Submit</button>
+<button mat-raised-button (click)="onUpdate()" *ngIf = "param_id != null">Update</button>
 </form>

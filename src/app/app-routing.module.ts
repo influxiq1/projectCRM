@@ -148,7 +148,7 @@ const appRoutes: Routes = [
   description: 'Would you like to Role Management?'
 }
 }},
-{path: 'Document-management/add-document/:id', component:AdddocumentComponent, data: 
+{path: 'document-management/add-document/:id', component:AdddocumentComponent, data: 
 {meta:{
   title: 'Document Management',
   description: 'Would you like to Role Management?'

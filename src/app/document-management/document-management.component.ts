@@ -9,14 +9,28 @@ import{CookieService} from 'ngx-cookie-service';
   styleUrls: ['./document-management.component.css']
 })
 export class DocumentManagementComponent implements OnInit {
+  public alldata:any=[];
+  tablename:any = 'documentmanagement';
+  alldata_skip:any = ["_id"];
+  alldata_modify_header = {};
+  deleteendpoint:any = 'deletesingledata';
+  editurl:any = 'document-management/add-document/';
+  updateurl:any = 'addorupdatedata';
+
+
+jwttoken:any;
+
+
+
   link:any =  'http://166.62.39.137:5050/';
   token:any;
   constructor(private activated:ActivatedRoute, private client:HttpClient,
     private cookie:CookieService) {
       // this.cookie.getAll();
-      // this.token = this.cookie.get('token');
-      // console.log('cookie..........');
-      // console.log(this.token);
+      this.token = this.cookie.get('token');
+      console.log('cookie..........');
+      console.log(this.token);
+      this.jwttoken  = this.token;
      }
 
   ngOnInit() {
@@ -24,11 +38,12 @@ export class DocumentManagementComponent implements OnInit {
   }
 
   getdata(){
-    let data:any = {'source':'documentmanagement','token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMzk1MjIsImlhdCI6MTU2NTk1MzEyMn0.PEnLm6YJDorflUIJ9z4UChceRVgPBMEJBMOrd3FYCZ8'};
+    let data:any = {'source':'documentmanagement','token':this.token};
     this.client.post (this.link+'datalist',data).subscribe(response=>{
       let result:any;
       result = response;
-      console.log(result);
+      this.alldata = result.res;
+      console.log(this.alldata);
     });
   }
 
