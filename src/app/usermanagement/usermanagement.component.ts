@@ -11,7 +11,7 @@ listingarray:any = [];
 
 tablename:any= 'usermanagement';
 apiurl:any= 'http://166.62.39.137:5050/';
-jwttoken:any='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0';
+jwttoken:any='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg';
 deletesingledata:any='deletesingledata';
 listingarray_skip:any=["_id","password"];
 listingarray_modify_header:any={};
@@ -29,7 +29,7 @@ editroute:any="user-management/add-user/";
   getData(){
       
     let data:any = {'source':'usermanagement',
-    'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'};
+    'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg'};
     let link:any = 'http://166.62.39.137:5050/datalist';
     this.http.post(link,data).subscribe(response=>{
       let result:any = {};

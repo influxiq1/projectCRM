@@ -40,7 +40,7 @@ export class AdduserComponent implements OnInit, OnDestroy {
     private activated:ActivatedRoute,private route:Router) {
 ​
 ​
-    let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0"};
+    let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg"};
     this.http.post(this.baseUrl + 'datalist',data).subscribe((res)=>{
       console.log("res");
             let result:any;
@@ -77,10 +77,10 @@ export class AdduserComponent implements OnInit, OnDestroy {
    }
 ​
   ngOnInit() {
-    // this.dropdownGo();
+    this.dropdownGo();
 if(this.param_id!=null){
     let data:any = {'source':'usermanagement','condition':{'_id':this.param_id},'token':
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'};
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg'};
   this.http.post(this.baseUrl+'datalist',data).subscribe(Response=>{
     let result:any;
     result = Response;
@@ -151,7 +151,7 @@ private _filter(value: string): string[] {
 ​
   dropdownGo()
   {
-    let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0"};
+    let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg"};
     this.http.post(this.baseUrl + 'datalist',data).subscribe((res)=>{
       console.log("res");
             let result:any;
@@ -212,7 +212,7 @@ private _filter(value: string): string[] {
         'designation' :this.addUserform.value.designation,
         'fruitCtrl':this.addUserform.value.fruitCtrl
       },
-    'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'
+    'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg'
   };
   
     this.http.post(this.baseUrl+'addorupdatedata',data).subscribe(response=>{
