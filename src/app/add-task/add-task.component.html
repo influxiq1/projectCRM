@@ -1,4 +1,4 @@
-<p>add-task works!</p>
+ <h2>Ad Task </h2>
 <form [formGroup]="formGroup">
     <mat-form-field>
     <input matInput placeholder="task name" formControlName="taskname" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.taskname.errors}" (blur)="inputBlur('taskname')">
@@ -9,7 +9,6 @@
     <textarea matInput placeholder="task decription" formControlName="taskdesc" [ngClass]="{'is-invalid':isSubmitted && onSignUpValidate.taskdesc.errors}" (blur)="inputBlur('taskdesc')"></textarea>
     <mat-error *ngIf="onSignUpValidate.taskdesc.errors && onSignUpValidate.taskdesc.errors.required">Task decription cannot be blank</mat-error>
     </mat-form-field><br>
-
     
     <mat-radio-group aria-label="Select an option" formControlName="status">
             <mat-radio-button value="in progress" checked>In Progress</mat-radio-button>

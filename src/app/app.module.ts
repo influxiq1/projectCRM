@@ -20,7 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddroleComponent } from './addrole/addrole.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import{ListingModule} from 'listing-angular7';
-import { AddTaskComponent } from './add-task/add-task.component';
+import { AddTaskComponent, Modal } from './add-task/add-task.component';
 import { CookieService } from 'ngx-cookie-service';
 
 import { TaskManagementComponent } from './task-management/task-management.component';
@@ -44,7 +44,8 @@ import { MomentModule } from 'ngx-moment';
     AddroleComponent,
     AdduserComponent,
     AddTaskComponent,
-    TaskManagementComponent
+    TaskManagementComponent,
+    Modal
   ],
   imports: [
     DemoMaterialModule,
@@ -59,6 +60,7 @@ import { MomentModule } from 'ngx-moment';
     
   ],
   providers: [CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ Modal ]
 })
 export class AppModule { }

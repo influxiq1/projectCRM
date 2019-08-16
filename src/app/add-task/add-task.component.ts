@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl,FormBuilder ,FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import * as moment from 'moment';
-
-
 import{ActivatedRoute,Router} from '@angular/router';
+
+export interface ModalData {
+  msg: string;
+}
+
 
 @Component({
   selector: 'app-add-task',
@@ -20,10 +23,15 @@ export class AddTaskComponent implements OnInit {
   formGroup : FormGroup;
   exten : any ;
   token : any ;
+  msg: string;
+  dialogRef :any;
+ 
   extentions : any = ['jpg','jpeg','png','mp4','wmv'];
   isSubmitted = false;
+  // public dialogRef: MatDialogRef<Modal>;
+
   constructor( private http : HttpClient , private formBuilder : FormBuilder ,
-     private cookieService : CookieService, private activated:ActivatedRoute) {
+     private cookieService : CookieService, private activated:ActivatedRoute , public mdl : MatDialog) {
    
       // this.activated.params.subscribe(par)
 
@@ -45,6 +53,20 @@ export class AddTaskComponent implements OnInit {
     })
    }
 
+
+   openDialog(x : any): void {
+      this.dialogRef = this.mdl.open(Modal, {
+      width: '150px',
+      data: { msg : x }
+    });
+
+      this.dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
+
   ngOnInit() {
     this.userPopulate();
   }
@@ -64,6 +86,7 @@ export class AddTaskComponent implements OnInit {
            
     });
   }
+
 
   onFileSelect(event:any)
   {
@@ -104,10 +127,35 @@ export class AddTaskComponent implements OnInit {
             this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
             let result:any;
             result = res;
+            this.openDialog(result.status);
+           
+            setTimeout(() => {
+              this.dialogRef.close();
+
+            }, 2000);
+            
         })
+
+       
     }
     else{
       alert('Please fill appropriately');
     }
   }
+}
+
+@Component({
+  selector: 'modal',
+  templateUrl: 'modal.html',
+})
+export class Modal {
+
+  constructor(
+    public dialogRef: MatDialogRef<Modal>,
+    @Inject(MAT_DIALOG_DATA) public data: ModalData ) {}
+
+    onNoClick(): void {
+    this.dialogRef.close();
+  }
+ 
 }
