@@ -16,6 +16,8 @@ import { AddTaskComponent } from './add-task/add-task.component';
 import { ProjectmanagementComponent } from './projectmanagement/projectmanagement.component';
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
 import { TaskManagementComponent } from './task-management/task-management.component';
+import { AdddocumentComponent } from './adddocument/adddocument.component';
+import { DocumentManagementComponent } from './document-management/document-management.component';
 const appRoutes: Routes = [
   //************************************** */
 { path: 'aboutus', component: AboutusComponent,data: {
@@ -117,6 +119,44 @@ const appRoutes: Routes = [
 {path: 'add-task', component:AddTaskComponent, data: 
 {meta:{
   title: 'Task Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+//******************************************* */
+{path: 'user-management', component:UsermanagementComponent, data: 
+{meta:{
+  title: 'User Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'user-management/add-user/:id', component:AdduserComponent, data: 
+{meta:{
+  title: 'User Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'add-user', component:AdduserComponent, data: 
+{meta:{
+  title: 'Role Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+//******************************************** */
+{path: 'document-management', component:DocumentManagementComponent, data: 
+{meta:{
+  title: 'Document Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'Document-management/add-document/:id', component:AdddocumentComponent, data: 
+{meta:{
+  title: 'Document Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'add-document', component:AdddocumentComponent, data: 
+{meta:{
+  title: 'Add Document',
   description: 'Would you like to Role Management?'
 }
 }},

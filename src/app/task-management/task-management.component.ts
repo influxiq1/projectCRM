@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import{ListingComponent} from 'listing-angular7';
+
 import{HttpClient} from '@angular/common/http';
 import{CookieService} from 'ngx-cookie-service';
 

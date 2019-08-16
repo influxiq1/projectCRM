@@ -22,9 +22,12 @@ import { AdduserComponent } from './adduser/adduser.component';
 import{ListingModule} from 'listing-angular7';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { CookieService } from 'ngx-cookie-service';
+
 import { TaskManagementComponent } from './task-management/task-management.component';
 import { DocumentManagementComponent } from './document-management/document-management.component';
 // import { MomentModule } from 'ngx-moment';
+import { MomentModule } from 'ngx-moment';
+import { AdddocumentComponent } from './adddocument/adddocument.component';
 
 
 
@@ -44,7 +47,8 @@ import { DocumentManagementComponent } from './document-management/document-mana
     AdduserComponent,
     AddTaskComponent,
     TaskManagementComponent,
-    DocumentManagementComponent
+    DocumentManagementComponent,
+    AdddocumentComponent
   ],
   imports: [
     DemoMaterialModule,
@@ -54,7 +58,7 @@ import { DocumentManagementComponent } from './document-management/document-mana
     AppRoutingModule,MetaModule.forRoot(), BrowserAnimationsModule,
     HttpClientModule,
     ListingModule,
-    // MomentModule
+    MomentModule
 
     
   ],

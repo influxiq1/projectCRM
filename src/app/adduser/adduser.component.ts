@@ -58,9 +58,9 @@ console.log(this.token);
     });
 ​
 ​
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allRoles.slice()));
+    // this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    //   startWith(null),
+    //   map((fruit: string | null) => fruit ? this._filter(fruit) : this.allRoles.slice()));
     
 ​
     this.addUserform = this.formBuilder.group({
@@ -155,7 +155,7 @@ if(this.param_id!=null){
   }
 ​
 
-​
+
   dropdownGo()
   {
     let data : any = { "source": "rolemanagement", "token" : this.token};
