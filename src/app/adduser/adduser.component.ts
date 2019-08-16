@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import{ActivatedRoute,Router} from '@angular/router';
+import{CookieService} from 'ngx-cookie-service';
 ​
 ​
 @Component({
@@ -36,11 +37,16 @@ export class AdduserComponent implements OnInit, OnDestroy {
   isSubmitted = false;
 ​
  param_id:any;
+
+ token:any;
   constructor(public http: HttpClient, public formBuilder: FormBuilder,
-    private activated:ActivatedRoute,private route:Router) {
+    private activated:ActivatedRoute,private route:Router,private cookie:CookieService) {
 ​
-​
-    let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg"};
+​   this.token = this.cookie.get('token');
+console.log('token..............');
+console.log(this.token);
+
+    let data : any = { "source": "rolemanagement", "token" : this.token};
     this.http.post(this.baseUrl + 'datalist',data).subscribe((res)=>{
       console.log("res");
             let result:any;
@@ -80,7 +86,7 @@ export class AdduserComponent implements OnInit, OnDestroy {
     this.dropdownGo();
 if(this.param_id!=null){
     let data:any = {'source':'usermanagement','condition':{'_id':this.param_id},'token':
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg'};
+    this.token};
   this.http.post(this.baseUrl+'datalist',data).subscribe(Response=>{
     let result:any;
     result = Response;
@@ -151,7 +157,7 @@ private _filter(value: string): string[] {
 ​
   dropdownGo()
   {
-    let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg"};
+    let data : any = { "source": "rolemanagement", "token" : this.token};
     this.http.post(this.baseUrl + 'datalist',data).subscribe((res)=>{
       console.log("res");
             let result:any;
@@ -212,7 +218,7 @@ private _filter(value: string): string[] {
         'designation' :this.addUserform.value.designation,
         'fruitCtrl':this.addUserform.value.fruitCtrl
       },
-    'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTY1MDEsImlhdCI6MTU2NTkzMDEwMX0.1y1mpkA8-xMBxY50DruEaJhdqepV5CZ9lFV8m3aVfGg'
+    'token':this.token
   };
   
     this.http.post(this.baseUrl+'addorupdatedata',data).subscribe(response=>{
