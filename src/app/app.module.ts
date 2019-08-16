@@ -22,7 +22,7 @@ import { AdduserComponent } from './adduser/adduser.component';
 import{ListingModule} from 'listing-angular7';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { CookieService } from 'ngx-cookie-service';
-// import { MomentModule } from 'ngx-moment';
+import { MomentModule } from 'ngx-moment';
 
 
 
@@ -50,7 +50,7 @@ import { CookieService } from 'ngx-cookie-service';
     AppRoutingModule,MetaModule.forRoot(), BrowserAnimationsModule,
     HttpClientModule,
     ListingModule,
-    // MomentModule
+    MomentModule
 
     
   ],

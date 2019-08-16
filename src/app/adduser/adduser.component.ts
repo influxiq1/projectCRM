@@ -58,9 +58,9 @@ console.log(this.token);
     });
 ​
 ​
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allRoles.slice()));
+    // this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    //   startWith(null),
+    //   map((fruit: string | null) => fruit ? this._filter(fruit) : this.allRoles.slice()));
     
 ​
     this.addUserform = this.formBuilder.group({
@@ -144,15 +144,15 @@ if(this.param_id!=null){
     console.log(this.fruits)
   }
 ​
-private _filter(value: string): string[] {
-  if (value) {
-    value = value.toLocaleLowerCase();
-    return this.allRoles.filter((fruit: string) =>
-        fruit.rolename.toLowerCase().indexOf(value) !== -1 );
-} else {
-    return this.allRoles;
-}
-​}
+// private _filter(value: string): string[] {
+//   if (value) {
+//     value = value.toLocaleLowerCase();
+//     return this.allRoles.filter((fruit: string) =>
+//         fruit.rolename.toLowerCase().indexOf(value) !== -1 );
+// } else {
+//     return this.allRoles;
+// }
+// ​}
  
 ​
   dropdownGo()

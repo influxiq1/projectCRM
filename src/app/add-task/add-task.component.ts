@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl,FormBuilder ,FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-add-task',
@@ -65,7 +67,7 @@ export class AddTaskComponent implements OnInit {
        this.exten = this.getExten(this.formGroup.value.fileupload);
        
     
-      console.log(this.extentions.includes(this.exten[0]));
+       console.log(this.extentions.includes(this.exten[0]));
        if(!this.extentions.includes(this.exten[0]))
        alert('File not valid');
     
@@ -85,15 +87,21 @@ export class AddTaskComponent implements OnInit {
   }
   onSubmit()
   {
-    console.log(this.formGroup.value);
-    let data : any = { "source": "taskmanagement", "data": this.formGroup.value };
+
+    if(this.formGroup.valid)
+    {
+      let myMoment: string = moment(this.formGroup.value.exdate).format('DD/MM/YYYY'); 
+      this.formGroup.value.exdate = myMoment;
+      console.log(this.formGroup.value);
+            let data : any = { "source": "taskmanagement", "data": this.formGroup.value };
             console.log(data)
             this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
-    let result:any;
-    result = res;
-    console.log(result);
-    
-    
-  })
+            let result:any;
+            result = res;
+        })
+    }
+    else{
+      alert('Please fill appropriately');
+    }
   }
 }
