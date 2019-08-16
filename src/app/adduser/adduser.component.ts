@@ -70,6 +70,7 @@ console.log(this.token);
       notes : ['',Validators.required],
       designation : [''],
       password : ['',Validators.required],
+      type: ['user']
   });
 
     this.activated.params.subscribe(param=>{
@@ -144,17 +145,17 @@ if(this.param_id!=null){
     console.log(this.fruits)
   }
 ​
-// private _filter(value: string): string[] {
-//   if (value) {
-//     value = value.toLocaleLowerCase();
-//     return this.allRoles.filter((fruit: string) =>
-//         fruit.rolename.toLowerCase().indexOf(value) !== -1 );
-// } else {
-//     return this.allRoles;
-// }
-// ​}
- 
+  private _filter(value: string): string[] {
+    console.log(value)
+    const filterValue = value.toLocaleLowerCase();
+    console.log(filterValue);
 ​
+​
+    return this.allRoles.filter((fruit: String) => fruit.rolename.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) === 0 );
+  }
+​
+
+
   dropdownGo()
   {
     let data : any = { "source": "rolemanagement", "token" : this.token};
@@ -182,12 +183,13 @@ if(this.param_id!=null){
   onSubmit()
   {
     this.isSubmitted = true;
+    console.log('this.addUserform.value');
     console.log(this.addUserform.value);
     if(this.addUserform.valid)
     {
     
             console.log(this.addUserform.value);
-            let data3 = {username:this.addUserform.controls['username'].value, email:this.addUserform.controls['email'].value, phone:this.addUserform.controls['phone'].value, notes:this.addUserform.controls['notes'].value, designation:this.addUserform.controls['designation'].value, password:this.addUserform.controls['password'].value, roles:this.fruits};
+            let data3 = {username:this.addUserform.controls['username'].value, email:this.addUserform.controls['email'].value, phone:this.addUserform.controls['phone'].value, notes:this.addUserform.controls['notes'].value, designation:this.addUserform.controls['designation'].value, password:this.addUserform.controls['password'].value, type: 'uesr', roles:this.fruits};
             console.log('data3')
             console.log(data3)
             // let data : any = { "source": "usermanagement", "data": this.addUserform.value };

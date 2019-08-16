@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl,FormBuilder ,FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+
 import * as moment from 'moment';
 
+
+import{ActivatedRoute,Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-task',
@@ -19,8 +22,11 @@ export class AddTaskComponent implements OnInit {
   token : any ;
   extentions : any = ['jpg','jpeg','png','mp4','wmv'];
   isSubmitted = false;
-  constructor( private http : HttpClient , private formBuilder : FormBuilder , private cookieService : CookieService) {
+  constructor( private http : HttpClient , private formBuilder : FormBuilder ,
+     private cookieService : CookieService, private activated:ActivatedRoute) {
    
+      // this.activated.params.subscribe(par)
+
     this.cookieService.getAll();
      this.token = this.cookieService.get('token');
     // console.log(this.cookieService.getAll());

@@ -1,0 +1,15 @@
+<p>task-management works!</p>
+
+<lib-listing *ngIf ='listingarray.length>0'
+        [datasource] ='listingarray'
+        [sourcedata] ='tablename'
+        [skip] ='listingarray_skip'
+        [modify_header_array] = 'listingarray_modify_header'
+        [apiurl] = 'apiurl'
+        [deleteendpoint] = 'deletesingledata'
+        [jwttoken] = 'jwttoken'
+        [statusarr] = 'statusarray'
+        [editroute]="editroute"
+        [updateendpoint]="updateurl"
+        >
+      </lib-listing>

@@ -22,7 +22,10 @@ import { AdduserComponent } from './adduser/adduser.component';
 import{ListingModule} from 'listing-angular7';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { CookieService } from 'ngx-cookie-service';
+
+import { TaskManagementComponent } from './task-management/task-management.component';
 import { MomentModule } from 'ngx-moment';
+
 
 
 
@@ -40,7 +43,8 @@ import { MomentModule } from 'ngx-moment';
     DashboardComponent,
     AddroleComponent,
     AdduserComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    TaskManagementComponent
   ],
   imports: [
     DemoMaterialModule,
