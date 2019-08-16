@@ -1,9 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl,FormBuilder ,FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+<<<<<<< HEAD
 import{ActivatedRoute,Router} from '@angular/router';
 import { url } from 'inspector';
+=======
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import * as moment from 'moment';
+import{ActivatedRoute,Router} from '@angular/router';
+
+export interface ModalData {
+  msg: string;
+}
+
+>>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
 
 @Component({
   selector: 'app-add-task',
@@ -17,14 +28,26 @@ export class AddTaskComponent implements OnInit {
   formGroup : FormGroup;
   exten : any ;
   token : any ;
+  msg: string;
+  dialogRef :any;
+ 
   extentions : any = ['jpg','jpeg','png','mp4','wmv'];
   isSubmitted = false;
+<<<<<<< HEAD
 
   param_id:any = {};
  
   constructor( private http : HttpClient , private formBuilder : FormBuilder ,
      private cookieService : CookieService, private activated:ActivatedRoute,
      private router:Router) {
+=======
+  // public dialogRef: MatDialogRef<Modal>;
+
+  constructor( private http : HttpClient , private formBuilder : FormBuilder ,
+     private cookieService : CookieService, private activated:ActivatedRoute , public mdl : MatDialog) {
+   
+      // this.activated.params.subscribe(par)
+>>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
 
     this.cookieService.getAll();
      this.token = this.cookieService.get('token');
@@ -43,6 +66,20 @@ export class AddTaskComponent implements OnInit {
       fileupload : ['',Validators.required]
     })
    }
+
+
+   openDialog(x : any): void {
+      this.dialogRef = this.mdl.open(Modal, {
+      width: '150px',
+      data: { msg : x }
+    });
+
+      this.dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
 
   ngOnInit() {
 
@@ -95,7 +132,16 @@ export class AddTaskComponent implements OnInit {
     });
   }
 
+<<<<<<< HEAD
   onFileSelect(event:any){
+=======
+
+  onFileSelect(event:any)
+  {
+    // let file = fileInput.target.files[0];
+    // let fileName = file.name;
+      // console.log("sdf",this.formGroup.value.fileupload);
+>>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
        this.exten = this.getExten(this.formGroup.value.fileupload);
        console.log('+++++++++++++++');
         console.log(this.exten);
@@ -125,10 +171,29 @@ export class AddTaskComponent implements OnInit {
     let data : any = { "source": "taskmanagement", "data": this.formGroup.value };
             console.log(data)
             this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
+<<<<<<< HEAD
     let result:any;
     result = res;
     console.log(result);
   })
+=======
+            let result:any;
+            result = res;
+            this.openDialog(result.status);
+           
+            setTimeout(() => {
+              this.dialogRef.close();
+
+            }, 2000);
+            
+        })
+
+       
+    }
+    else{
+      alert('Please fill appropriately');
+    }
+>>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
   }
 
   onUpdate(){
@@ -158,4 +223,20 @@ export class AddTaskComponent implements OnInit {
   });
 }
 
+}
+
+@Component({
+  selector: 'modal',
+  templateUrl: 'modal.html',
+})
+export class Modal {
+
+  constructor(
+    public dialogRef: MatDialogRef<Modal>,
+    @Inject(MAT_DIALOG_DATA) public data: ModalData ) {}
+
+    onNoClick(): void {
+    this.dialogRef.close();
+  }
+ 
 }

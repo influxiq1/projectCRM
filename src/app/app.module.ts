@@ -20,7 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddroleComponent } from './addrole/addrole.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import{ListingModule} from 'listing-angular7';
-import { AddTaskComponent } from './add-task/add-task.component';
+import { AddTaskComponent, Modal } from './add-task/add-task.component';
 import { CookieService } from 'ngx-cookie-service';
 
 import { TaskManagementComponent } from './task-management/task-management.component';
@@ -47,8 +47,12 @@ import { AdddocumentComponent } from './adddocument/adddocument.component';
     AdduserComponent,
     AddTaskComponent,
     TaskManagementComponent,
+<<<<<<< HEAD
     DocumentManagementComponent,
     AdddocumentComponent
+=======
+    Modal
+>>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
   ],
   imports: [
     DemoMaterialModule,
@@ -63,6 +67,7 @@ import { AdddocumentComponent } from './adddocument/adddocument.component';
     
   ],
   providers: [CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ Modal ]
 })
 export class AppModule { }
