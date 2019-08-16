@@ -23,6 +23,7 @@ import{ListingModule} from 'listing-angular7';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { CookieService } from 'ngx-cookie-service';
 import { TaskManagementComponent } from './task-management/task-management.component';
+import { DocumentManagementComponent } from './document-management/document-management.component';
 // import { MomentModule } from 'ngx-moment';
 
 
@@ -42,7 +43,8 @@ import { TaskManagementComponent } from './task-management/task-management.compo
     AddroleComponent,
     AdduserComponent,
     AddTaskComponent,
-    TaskManagementComponent
+    TaskManagementComponent,
+    DocumentManagementComponent
   ],
   imports: [
     DemoMaterialModule,

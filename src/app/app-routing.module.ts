@@ -17,51 +17,51 @@ import { ProjectmanagementComponent } from './projectmanagement/projectmanagemen
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
 import { TaskManagementComponent } from './task-management/task-management.component';
 const appRoutes: Routes = [
-  { path: 'aboutus', component: AboutusComponent,data: {
+  //************************************** */
+{ path: 'aboutus', component: AboutusComponent,data: {
       meta: {
           title: 'About US',
           description: 'Have you seen my rubber duckie?'
       }
-  } },
-  { path: 'contact',      component: ContactusComponent,
+} },
+{ path: 'contact',      component: ContactusComponent,
       data: {
           meta: {
               title: 'Contact Us',
               description: 'Have you seen my rubber duckie?'
           }
-      }},
-      {path: '', component:LoginComponent, data: 
+  }},
+// *******************************************/
+{path: '', component:LoginComponent, data: 
       {meta:{
         title: 'Login',
         description: 'Have you seen my rubber duckie?'
       }
-    }},
-    {path: 'forgotpass', component:ForgotpassComponent, data: 
+}},
+{path: 'forgotpass', component:ForgotpassComponent, data: 
       {meta:{
         title: 'Forgot Password',
         description: 'Have you seen my rubber duckie?'
       }
-    }},
-
-    {path: 'signup', component:SingupComponent, data: 
+}},
+{path: 'signup', component:SingupComponent, data: 
     {meta:{
       title: 'Sign Up',
       description: 'Would you like to sign up?'
     }
-  }},
-
-  {path: 'role-management', component:RolemanagementComponent, data: 
-  {meta:{
-    title: 'Role Management',
-    description: 'Would you like to Role Management?'
-  }
 }},
-
 {path: 'dashboard', component:DashboardComponent, data: 
 {meta:{
   title: 'Role Management',
   description: 'Would you like to Role Management?'
 }
+}},
+//************************************** */
+{path: 'role-management', component:RolemanagementComponent, data: 
+  {meta:{
+    title: 'Role Management',
+    description: 'Would you like to Role Management?'
+  }
 }},
 {path: 'role-management/add-role/:id', component:AddroleComponent, data: 
 {meta:{
@@ -75,18 +75,14 @@ const appRoutes: Routes = [
   description: 'Would you like to Role Management?'
 }
 }},
-{path: 'add-user', component:AdduserComponent, data: 
-{meta:{
-  title: 'Role Management',
-  description: 'Would you like to Role Management?'
-}
-}},
+//************************************ */
 {path: 'project-management', component:ProjectmanagementComponent, data: 
 {meta:{
   title: 'Project Management',
   description: 'Would you like to Role Management?'
 }
 }},
+//*********************************************** */
 {path: 'user-management', component:UsermanagementComponent, data: 
 {meta:{
   title: 'User Management',
@@ -99,6 +95,13 @@ const appRoutes: Routes = [
   description: 'Would you like to Role Management?'
 }
 }},
+{path: 'add-user', component:AdduserComponent, data: 
+{meta:{
+  title: 'Role Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+//******************************************** */
 {path: 'task-management', component:TaskManagementComponent, data: 
 {meta:{
   title: 'Task Management',
@@ -106,6 +109,12 @@ const appRoutes: Routes = [
 }
 }},
 {path: 'task-management/add-task/:id', component:AddTaskComponent, data: 
+{meta:{
+  title: 'Task Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'add-task', component:AddTaskComponent, data: 
 {meta:{
   title: 'Task Management',
   description: 'Would you like to Role Management?'

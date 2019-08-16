@@ -47,9 +47,9 @@
         <mat-error *ngIf="onSignUpValidate.notes.errors && onSignUpValidate.notes.errors.required">Notes cannot be blank</mat-error>
      </mat-form-field><br>
 
-     
      <mat-label>Add videos or screenshot</mat-label> <br>
      <input type="file" (change)="onFileSelect($event)" formControlName="fileupload">
      <br>
-     <button mat-raised-button (click)="onSubmit()">SUBMIT</button>
+     <button mat-raised-button (click)="onSubmit()" *ngIf="param_id == null">Submit</button>
+     <button mat-raised-button (click)="onUpdate()" *ngIf="param_id != null">Update</button>
 </form>

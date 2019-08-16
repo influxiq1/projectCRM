@@ -14,7 +14,7 @@ export class TaskManagementComponent implements OnInit {
   listingarray:any =[];
   
   tablename:any ='taskmanagement';
-listingarray_skip:any = [];
+listingarray_skip:any = ["id"];
 listingarray_modify_header:any ={};
 jwttoken:any;
 apiurl:any = 'http://166.62.39.137:5050/';
@@ -29,6 +29,7 @@ updateurl:any = 'addorupdatedata';
     this.token = this.cookie.get('token');
     console.log('token......');
     console.log(this.token);
+    this.jwttoken = this.token;
 
     this.getdata();
    }
