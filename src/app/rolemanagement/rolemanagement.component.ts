@@ -15,7 +15,7 @@ export class RolemanagementComponent implements OnInit {
   tablename:any ='rolemanagement';
 listingarray_skip:any = ["_id","id"];
 listingarray_modify_header:any ={};
-jwttoken:any = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU3ODYxOTYsImlhdCI6MTU2NTY5OTc5Nn0.VVwMVUyNRiItgvWoMmS5OkuNldGrSO3RExj8C1xOTIM';
+jwttoken:any = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTg2NTYsImlhdCI6MTU2NTkzMjI1Nn0.coilN6aQeDnRimZHzTyn4GEb_XS0YXsCXsFA84TQc_0';
 apiurl:any = 'http://166.62.39.137:5050/';
 deletesingledata:any = 'deletesingledata';
 statusarray:any = [{val:0, name:'Inactive'},{val:1, name:'Active'}];
@@ -32,7 +32,7 @@ param_id:any;
   }
 
   getdata(){
-    let data:any = {'source':'rolemanagement','token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NDI0MDEsImlhdCI6MTU2NTc1NjAwMX0.mYFbqwqSJvcqfITBy7gaBXtOurtjEd4rFcz2DnY3UZw'};
+    let data:any = {'source':'rolemanagement','token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjYwMTg2NTYsImlhdCI6MTU2NTkzMjI1Nn0.coilN6aQeDnRimZHzTyn4GEb_XS0YXsCXsFA84TQc_0'};
     let link:any = 'http://166.62.39.137:5050/datalist';
     this.http.post(link,data).subscribe(response=>{
       let result:any ={};

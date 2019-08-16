@@ -24,23 +24,6 @@
  
    
     
-    <!-- <mat-form-field >
-      <input type = "text" 
-         placeholder = "Select a role" 
-        
-         matInput 
-         formControlName = "roleselect" 
-         [matAutocomplete] = "auto"
-         [ngClass]="{'is-invalid':isSubmitted && onFormValidate.roleselect.errors}"
-         (blur)="inputBlur('roleselect')">
-      <mat-autocomplete #auto = "matAutocomplete">
-         <mat-option *ngFor = "let option of allRoles" [value] = "option.rolename">
-            {{option.rolename}}
-         </mat-option>
-       </mat-autocomplete>
-       <mat-error *ngIf="onFormValidate.roleselect.errors && onFormValidate.roleselect.errors.required">Please select a role</mat-error>
-      
-   </mat-form-field> -->
     <br>
 
 
@@ -81,11 +64,12 @@
     
 
 
-    <mat-form-field>
+    <mat-form-field *ngIf="param_id == null">
       <input matInput placeholder="password" formControlName="password" type="password"  [ngClass]="{'is-invalid': isSubmitted && onFormValidate.password.errors}" (blur)="inputBlur('password')">
       <mat-error *ngIf="onFormValidate.password.errors && onFormValidate.password.errors.required">Password cannot be blank</mat-error>
     </mat-form-field><br>
 
-      <button (click)="onSubmit()" mat-raised-button >SUBMIT</button>
+      <button (click)="onSubmit()" mat-raised-button *ngIf="param_id==null">Submit</button>
+      <button (click)="onUpdate()" mat-raised-button *ngIf="param_id!=null" >Update</button>
     </form>
 

@@ -16,7 +16,8 @@ export class AddroleComponent implements OnInit, OnDestroy {
   isSubmitted=false;
   baseUrl='http://166.62.39.137:5050/';
   formGroup : FormGroup;
-  constructor( private formBuilder : FormBuilder , private http : HttpClient, private activeroute: ActivatedRoute, public router: Router) {
+  constructor( private formBuilder : FormBuilder , private http : HttpClient,
+     private activeroute: ActivatedRoute, public router: Router) {
 
     this.activeroute.params.subscribe(params=>{
       // console.log(params);
@@ -71,12 +72,13 @@ export class AddroleComponent implements OnInit, OnDestroy {
     if(this.formGroup.valid)
     {
             let data : any = { "source": "rolemanagement", "data": this.formGroup.value };
-            this.router.navigate(['role-management']);
             this.addroleSubscribe = this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
             console.log("res");
             let result:any = {};
             result=res;
         });
+        this.router.navigate(['role-management']);
+        // this.router.navigate(['role-management']);
     }
   }
     // alert('Invalid form');

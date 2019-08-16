@@ -6,6 +6,7 @@ import {map, startWith} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import{ActivatedRoute,Router} from '@angular/router';
 ​
 ​
 @Component({
@@ -34,8 +35,9 @@ export class AdduserComponent implements OnInit, OnDestroy {
   allRoles : any = [];
   isSubmitted = false;
 ​
- 
-  constructor(public http: HttpClient, public formBuilder: FormBuilder) {
+ param_id:any;
+  constructor(public http: HttpClient, public formBuilder: FormBuilder,
+    private activated:ActivatedRoute,private route:Router) {
 ​
 ​
     let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0"};
@@ -63,10 +65,37 @@ export class AdduserComponent implements OnInit, OnDestroy {
       designation : [''],
       password : ['',Validators.required],
   });
+
+    this.activated.params.subscribe(param=>{
+      let params_id:any;
+      params_id = param;
+      this.param_id = params_id.id;
+      console.log('param_id');
+      console.log(this.param_id)
+    })
+
    }
 ​
   ngOnInit() {
     // this.dropdownGo();
+if(this.param_id!=null){
+    let data:any = {'source':'usermanagement','condition':{'_id':this.param_id},'token':
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'};
+  this.http.post(this.baseUrl+'datalist',data).subscribe(Response=>{
+    let result:any;
+    result = Response;
+    console.log('result........');
+    console.log(result);
+    console.log('+++++++++++');
+    this.addUserform.patchValue({
+      'username' : result.res[0].username , 
+      'email' :  result.res[0].email,
+      'phone' :  result.res[0].phone,
+      'notes' : result.res[0].notes,
+      'designation' :result.res[0].designation 
+  });
+    });
+  }
   }
   
  
@@ -120,7 +149,7 @@ export class AdduserComponent implements OnInit, OnDestroy {
     return this.allRoles.filter((fruit: String) => fruit.rolename.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) === 0 );
   }
 ​
- 
+
 ​
   dropdownGo()
   {
@@ -170,7 +199,32 @@ export class AdduserComponent implements OnInit, OnDestroy {
     alert('Invalid form');
   }
   ngOnDestroy() {
-    this.addUserSubscribe.unsubscribe();
+    // this.addUserSubscribe.unsubscribe();
     }
+
+    onUpdate(){
+
+      let data:any = {'source':'usermanagement',
+      'data':{
+        'id':this.param_id,
+        'username' : this.addUserform.value.username , 
+        'email' :  this.addUserform.value.email,
+        'phone' :  this.addUserform.value.phone,
+        'notes' : this.addUserform.value.notes,
+        'designation' :this.addUserform.value.designation,
+        'fruitCtrl':this.addUserform.value.fruitCtrl
+      },
+    'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'
+  };
+  
+    this.http.post(this.baseUrl+'addorupdatedata',data).subscribe(response=>{
+      let result:any={};
+      result = response;
+      console.log('update........');
+      console.log(result);
+    });
+    this.addUserform.reset();
+    this.route.navigate(['/user-management']);
+  }
 ​
 }
