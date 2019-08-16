@@ -15,6 +15,7 @@ import { AdduserComponent } from './adduser/adduser.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { ProjectmanagementComponent } from './projectmanagement/projectmanagement.component';
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
+import { TaskManagementComponent } from './task-management/task-management.component';
 const appRoutes: Routes = [
   { path: 'aboutus', component: AboutusComponent,data: {
       meta: {
@@ -80,12 +81,6 @@ const appRoutes: Routes = [
   description: 'Would you like to Role Management?'
 }
 }},
-{path: 'add-task', component:AddTaskComponent, data: 
-{meta:{
-  title: 'Task Management',
-  description: 'Would you like to Role Management?'
-}
-}},
 {path: 'project-management', component:ProjectmanagementComponent, data: 
 {meta:{
   title: 'Project Management',
@@ -103,7 +98,19 @@ const appRoutes: Routes = [
   title: 'User Management',
   description: 'Would you like to Role Management?'
 }
-}}
+}},
+{path: 'task-management', component:TaskManagementComponent, data: 
+{meta:{
+  title: 'Task Management',
+  description: 'Would you like to Role Management?'
+}
+}},
+{path: 'task-management/add-task/:id', component:AddTaskComponent, data: 
+{meta:{
+  title: 'Task Management',
+  description: 'Would you like to Role Management?'
+}
+}},
 ];
 
 @NgModule({
