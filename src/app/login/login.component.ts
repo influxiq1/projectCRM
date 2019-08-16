@@ -3,6 +3,7 @@ import{FormGroup,FormBuilder,Validators,FormControl} from '@angular/forms';
 import{HttpClient} from '@angular/common/http';
 import { Subject, Subscription } from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   // public loginSubscribe: Subject<void> = new Subject();
   public loginSubscribe:Subscription;
   messages:any = '';
+  public userType: any;
   account_validation_messages = {
     'email': [
       { type: 'required', message: 'Email is required' },
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    
 
 loginform:FormGroup;
-constructor(public build:FormBuilder, private http:HttpClient , public cookieService: CookieService){
+constructor(public build:FormBuilder, private http:HttpClient , public cookieService: CookieService, public router: Router){
   this.loginform = this.build.group({
     email:['', Validators.compose([Validators.required, Validators.pattern(/^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/)])],
     password:['',Validators.required]
@@ -51,11 +53,17 @@ constructor(public build:FormBuilder, private http:HttpClient , public cookieSer
         let result :any = {};
         result = response;
         if(result.status == 'success'){
-          console.log(result.data[0]);
+          console.log(result.data[0].type);
           console.log(result.data);
           console.log(result.token);
           this.cookieService.set('token',result.token);
-        this.loginform.reset();
+          this.cookieService.set('type',result.type);
+          if(result.data[0].type = 'user') {
+            console.log('++++++++++++++++++++++++++++++++++++++++++++++')
+            this.router.navigate(['/user-management']);
+            this.loginform.reset();
+          }
+       
         }
         this.messages = result.msg;
         // console.log(this.messages);

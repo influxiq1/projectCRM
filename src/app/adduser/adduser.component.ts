@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import{ActivatedRoute,Router} from '@angular/router';
+import{CookieService} from 'ngx-cookie-service';
 ​
 ​
 @Component({
@@ -36,11 +37,16 @@ export class AdduserComponent implements OnInit, OnDestroy {
   isSubmitted = false;
 ​
  param_id:any;
+
+ token:any;
   constructor(public http: HttpClient, public formBuilder: FormBuilder,
-    private activated:ActivatedRoute,private route:Router) {
+    private activated:ActivatedRoute,private route:Router,private cookie:CookieService) {
 ​
-​
-    let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0"};
+​   this.token = this.cookie.get('token');
+console.log('token..............');
+console.log(this.token);
+
+    let data : any = { "source": "rolemanagement", "token" : this.token};
     this.http.post(this.baseUrl + 'datalist',data).subscribe((res)=>{
       console.log("res");
             let result:any;
@@ -64,6 +70,7 @@ export class AdduserComponent implements OnInit, OnDestroy {
       notes : ['',Validators.required],
       designation : [''],
       password : ['',Validators.required],
+      type: ['user']
   });
 
     this.activated.params.subscribe(param=>{
@@ -77,10 +84,10 @@ export class AdduserComponent implements OnInit, OnDestroy {
    }
 ​
   ngOnInit() {
-    // this.dropdownGo();
+    this.dropdownGo();
 if(this.param_id!=null){
     let data:any = {'source':'usermanagement','condition':{'_id':this.param_id},'token':
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'};
+    this.token};
   this.http.post(this.baseUrl+'datalist',data).subscribe(Response=>{
     let result:any;
     result = Response;
@@ -143,8 +150,6 @@ if(this.param_id!=null){
     const filterValue = value.toLocaleLowerCase();
     console.log(filterValue);
 ​
-    // return this.allRoles.filter((movie: string) =>
-    // movie.toLocaleLowerCase().indexOf(filterValue) !== -1);
 ​
     return this.allRoles.filter((fruit: String) => fruit.rolename.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) === 0 );
   }
@@ -153,7 +158,7 @@ if(this.param_id!=null){
 ​
   dropdownGo()
   {
-    let data : any = { "source": "rolemanagement", "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0"};
+    let data : any = { "source": "rolemanagement", "token" : this.token};
     this.http.post(this.baseUrl + 'datalist',data).subscribe((res)=>{
       console.log("res");
             let result:any;
@@ -178,12 +183,13 @@ if(this.param_id!=null){
   onSubmit()
   {
     this.isSubmitted = true;
+    console.log('this.addUserform.value');
     console.log(this.addUserform.value);
     if(this.addUserform.valid)
     {
     
             console.log(this.addUserform.value);
-            let data3 = {username:this.addUserform.controls['username'].value, email:this.addUserform.controls['email'].value, phone:this.addUserform.controls['phone'].value, notes:this.addUserform.controls['notes'].value, designation:this.addUserform.controls['designation'].value, password:this.addUserform.controls['password'].value, roles:this.fruits};
+            let data3 = {username:this.addUserform.controls['username'].value, email:this.addUserform.controls['email'].value, phone:this.addUserform.controls['phone'].value, notes:this.addUserform.controls['notes'].value, designation:this.addUserform.controls['designation'].value, password:this.addUserform.controls['password'].value, type: 'uesr', roles:this.fruits};
             console.log('data3')
             console.log(data3)
             // let data : any = { "source": "usermanagement", "data": this.addUserform.value };
@@ -214,7 +220,7 @@ if(this.param_id!=null){
         'designation' :this.addUserform.value.designation,
         'fruitCtrl':this.addUserform.value.fruitCtrl
       },
-    'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU4NTcwOTAsImlhdCI6MTU2NTc3MDY5MH0.2Dru5yq91Grd8VNVZs6JSUZqJ9b4g9lWXzx3cU_EuP0'
+    'token':this.token
   };
   
     this.http.post(this.baseUrl+'addorupdatedata',data).subscribe(response=>{

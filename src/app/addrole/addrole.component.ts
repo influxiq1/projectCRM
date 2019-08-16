@@ -3,6 +3,8 @@ import  { FormBuilder , FormControl , FormGroup , Validator, Validators } from '
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import{CookieService} from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-addrole',
   templateUrl: './addrole.component.html',
@@ -16,8 +18,12 @@ export class AddroleComponent implements OnInit, OnDestroy {
   isSubmitted=false;
   baseUrl='http://166.62.39.137:5050/';
   formGroup : FormGroup;
+
+  token:any;
   constructor( private formBuilder : FormBuilder , private http : HttpClient,
-     private activeroute: ActivatedRoute, public router: Router) {
+     private activeroute: ActivatedRoute, public router: Router,private cookie:CookieService) {
+
+      this.token = this.cookie.get('token');
 
     this.activeroute.params.subscribe(params=>{
       // console.log(params);
@@ -36,7 +42,7 @@ export class AddroleComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if(this.params_id != null){
-    let data:any = {'source':'rolemanagement','condition':{'_id':this.params_id},'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJleHAiOjE1NjU3NzAzOTIsImlhdCI6MTU2NTY4Mzk5Mn0.6ioCh95UTocKSy6fl9UtpP29TUEMdXG7fg0_C4IcRd8'};
+    let data:any = {'source':'rolemanagement','condition':{'_id':this.params_id},'token':this.token};
     let link:any = 'http://166.62.39.137:5050/datalist';
     
     this.resultdataSubscribe =  this.http.post(link,data).subscribe(Response=>{
