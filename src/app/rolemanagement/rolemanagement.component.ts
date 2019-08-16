@@ -16,6 +16,7 @@ export class RolemanagementComponent implements OnInit {
   tablename:any ='rolemanagement';
 listingarray_skip:any = ["_id","id"];
 listingarray_modify_header:any ={};
+
 jwttoken:any;
 apiurl:any = 'http://166.62.39.137:5050/';
 deletesingledata:any = 'deletesingledata';
