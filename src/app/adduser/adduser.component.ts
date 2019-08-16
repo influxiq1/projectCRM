@@ -145,14 +145,15 @@ if(this.param_id!=null){
     console.log(this.fruits)
   }
 ​
-  private _filter(value: string): string[] {
-    console.log(value)
-    const filterValue = value.toLocaleLowerCase();
-    console.log(filterValue);
-​
-​
-    return this.allRoles.filter((fruit: String) => fruit.rolename.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) === 0 );
-  }
+private _filter(value: string): string[] {
+  if (value) {
+    value = value.toLocaleLowerCase();
+    return this.allRoles.filter((fruit: string) =>
+        fruit.rolename.toLowerCase().indexOf(value) !== -1);
+} else {
+    return this.allRoles;
+}
+}
 ​
 
 
