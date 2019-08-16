@@ -117,7 +117,7 @@ export class AdduserComponent implements OnInit, OnDestroy {
     // return this.allRoles.filter((movie: string) =>
     // movie.toLocaleLowerCase().indexOf(filterValue) !== -1);
 ​
-    return this.allRoles.filter((fruit: String) => fruit.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) === 0 );
+    return this.allRoles.filter((fruit: String) => fruit.rolename.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) === 0 );
   }
 ​
  
