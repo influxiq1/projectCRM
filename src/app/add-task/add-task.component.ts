@@ -2,19 +2,14 @@ import { Component, OnInit ,Inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl,FormBuilder ,FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-<<<<<<< HEAD
 import{ActivatedRoute,Router} from '@angular/router';
-import { url } from 'inspector';
-=======
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import * as moment from 'moment';
-import{ActivatedRoute,Router} from '@angular/router';
+
 
 export interface ModalData {
   msg: string;
 }
-
->>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
 
 @Component({
   selector: 'app-add-task',
@@ -33,29 +28,17 @@ export class AddTaskComponent implements OnInit {
  
   extentions : any = ['jpg','jpeg','png','mp4','wmv'];
   isSubmitted = false;
-<<<<<<< HEAD
 
   param_id:any = {};
  
   constructor( private http : HttpClient , private formBuilder : FormBuilder ,
      private cookieService : CookieService, private activated:ActivatedRoute,
-     private router:Router) {
-=======
-  // public dialogRef: MatDialogRef<Modal>;
-
-  constructor( private http : HttpClient , private formBuilder : FormBuilder ,
-     private cookieService : CookieService, private activated:ActivatedRoute , public mdl : MatDialog) {
-   
-      // this.activated.params.subscribe(par)
->>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
-
-    this.cookieService.getAll();
+     private router:Router, private mdl: MatDialog) {
+     this.cookieService.getAll();
      this.token = this.cookieService.get('token');
-    // console.log(this.cookieService.getAll());
-    // console.log(this.cookieService.get('token'));
+   
 
-
-    this.formGroup = formBuilder.group({
+      this.formGroup = formBuilder.group({
       taskname : [null, Validators.required],
       taskdesc : ['',Validators.required],
       status : ['in progress',Validators.required],
@@ -68,7 +51,7 @@ export class AddTaskComponent implements OnInit {
    }
 
 
-   openDialog(x : any): void {
+      openDialog(x : any): void {
       this.dialogRef = this.mdl.open(Modal, {
       width: '150px',
       data: { msg : x }
@@ -83,7 +66,7 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit() {
 
-    this.activated.params.subscribe(params_id=>{
+      this.activated.params.subscribe(params_id=>{
       let result:any = {};
       result = params_id;
       this.param_id = result.id;
@@ -121,7 +104,7 @@ export class AddTaskComponent implements OnInit {
   {
     let data : any = { "source": "usermanagement", "token" : this.token};
     this.http.post(this.baseUrl + 'datalist',data).subscribe((res)=>{
-      console.log("res");
+            console.log("res");
             let result:any;
             result = res;   
             // console.log(result.res);
@@ -132,28 +115,20 @@ export class AddTaskComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-  onFileSelect(event:any){
-=======
 
   onFileSelect(event:any)
   {
-    // let file = fileInput.target.files[0];
-    // let fileName = file.name;
-      // console.log("sdf",this.formGroup.value.fileupload);
->>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
        this.exten = this.getExten(this.formGroup.value.fileupload);
-       console.log('+++++++++++++++');
+        console.log('+++++++++++++++');
         console.log(this.exten);
-       console.log('+++++++++++++++');
-      console.log(this.extentions.includes(this.exten[0]));
-      console.log('---------------');
-       if(!this.extentions.includes(this.exten[0]))
-       alert('File not valid');
+        console.log('+++++++++++++++');
+        console.log(this.extentions.includes(this.exten[0]));
+        console.log('---------------');
+        if(!this.extentions.includes(this.exten[0]))
+        alert('File not valid');
   }
 
   getExten(fileName){
-    
     return (fileName.lastIndexOf('.') < 1) ?   null : fileName.split('.').slice(-1);
   }
 
@@ -165,36 +140,32 @@ export class AddTaskComponent implements OnInit {
   inputBlur(val: any) {
     this.formGroup.controls[val].markAsUntouched();
   }
+
   onSubmit()
-  {
-    console.log(this.formGroup.value);
-    let data : any = { "source": "taskmanagement", "data": this.formGroup.value };
+  {  
+    if(this.formGroup.valid)
+    {
+      let myMoment: string = moment(this.formGroup.value.exdate).format('DD/MM/YYYY'); 
+      this.formGroup.value.exdate = myMoment;
+      console.log(this.formGroup.value);
+            let data : any = { "source": "taskmanagement", "data": this.formGroup.value };
             console.log(data)
             this.http.post(this.baseUrl + 'addorupdatedata',data).subscribe((res)=>{
-<<<<<<< HEAD
-    let result:any;
-    result = res;
-    console.log(result);
-  })
-=======
             let result:any;
             result = res;
             this.openDialog(result.status);
            
             setTimeout(() => {
               this.dialogRef.close();
-
             }, 2000);
             
         })
 
        
     }
-    else{
-      alert('Please fill appropriately');
-    }
->>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
-  }
+    
+  
+}
 
   onUpdate(){
     let data:any ={'source':'taskmanagement',

@@ -47,12 +47,9 @@ import { AdddocumentComponent } from './adddocument/adddocument.component';
     AdduserComponent,
     AddTaskComponent,
     TaskManagementComponent,
-<<<<<<< HEAD
     DocumentManagementComponent,
-    AdddocumentComponent
-=======
+    AdddocumentComponent,
     Modal
->>>>>>> 2bf065f68fb88227e2611f380cd130be85a81746
   ],
   imports: [
     DemoMaterialModule,
